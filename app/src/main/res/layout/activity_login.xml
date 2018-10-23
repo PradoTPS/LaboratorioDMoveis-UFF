@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    tools:context=".Login"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    android:orientation="vertical"
-    tools:context=".Login">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="5"/>
+            android:layout_weight="1"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -28,60 +29,78 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <TextView
+            <!-- <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="E-mail:" />
+                android:text="E-mail:" /> -->
 
             <EditText
                 android:id="@+id/email"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Email"
                 android:ems="10"
                 android:inputType="textEmailAddress" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <TextView
+            <!-- <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Senha:" />
+                android:text="Senha:" /> -->
 
             <EditText
                 android:id="@+id/senha"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Senha"
                 android:ems="10"
                 android:inputType="textPassword" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/acessar"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Acessar"/>
+            android:layout_weight="2"/>
+
+        <Button
+            android:id="@+id/acessar"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Login"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/botao_login"/>
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:src="@mipmap/login_ou_cadastro"/>
 
         <Button
             android:id="@+id/cadastrar"
-            android:layout_width="wrap_content"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:text="Cadastrar"/>
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:text="Cadastrar"
+            android:background="@drawable/botao_cadastro"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
