@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "691998622036",
+    "firebase_url": "https://uff-eventos-2018.firebaseio.com",
+    "project_id": "uff-eventos-2018",
+    "storage_bucket": "uff-eventos-2018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691998622036:android:f77b7e48d85d9c78",
+        "android_client_info": {
+          "package_name": "labmoveis.uffeventos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691998622036-ton58knirnh4f0gbngdm525cfnqbleab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "labmoveis.uffeventos",
+            "certificate_hash": "57fbfa4bea4e069846fce50cdf3a3aebb271a58e"
+          }
+        },
+        {
+          "client_id": "691998622036-5hhkd6t46cc0c1ip5spjaopf8il0ue6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwKwLHQcp8zxmizQbrkvERdJGw2f5TVtI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691998622036-5hhkd6t46cc0c1ip5spjaopf8il0ue6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
