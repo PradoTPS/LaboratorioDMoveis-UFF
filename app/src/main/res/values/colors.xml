@@ -5,4 +5,5 @@
     <color name="colorAccent">#303F9F</color>
     <color name="botaoLogin">#FFC107</color>
     <color name="botaoCadastro">#0F62AC</color>
+    <color name="mensagemdeerro">#EC1A1A</color>
 </resources>

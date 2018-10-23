@@ -11,15 +11,18 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".Cadastro" />
-        <activity android:name=".Login">
+        <activity android:name=".Cadastro">
             <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-                    <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
                 <!-- <action android:name="OPEN_LOGIN" />
                 <category android:name="android.intent.category.DEFAULT" /> -->
             </intent-filter>
+
+        </activity>
+        <activity android:name=".Login">
+
         </activity>
 
     </application>

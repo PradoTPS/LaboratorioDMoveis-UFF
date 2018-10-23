@@ -43,7 +43,7 @@
                 android:text="E-mail:" /> -->
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -64,7 +64,7 @@
                 android:text="Senha:" /> -->
 
             <EditText
-                android:id="@+id/senha"
+                android:id="@+id/login_senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Senha"
@@ -73,13 +73,21 @@
 
         </LinearLayout>
 
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/login_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Salvar login"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"/>
 
         <Button
-            android:id="@+id/acessar"
+            android:id="@+id/login_login"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -94,7 +102,7 @@
             android:src="@mipmap/login_ou_cadastro"/>
 
         <Button
-            android:id="@+id/cadastrar"
+            android:id="@+id/login_cadastrar"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
