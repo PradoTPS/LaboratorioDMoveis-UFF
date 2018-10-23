@@ -11,8 +11,8 @@ public class Preferencias {
     private int mode = 0;
     private SharedPreferences.Editor editor;
 
-    private final String chave_identificador = "identificarUsuarioLogado";
-    private final String chave_nome = "nomeUsuarioLogado";
+    private final String chave_email = "emailUsuarioLogado";
+    private final String chave_senha = "senhaUsuarioLogado";
 
     public Preferencias(Context context) {
         this.context = context;
@@ -20,17 +20,17 @@ public class Preferencias {
         editor = preferences.edit();
     }
 
-    public void salvarPreferencias(String identificador, String Nome){
-        editor.putString(chave_identificador, identificador);
-        editor.putString(chave_nome, Nome);
+    public void salvarPreferencias(String email, String senha){
+        editor.putString(chave_email, email);
+        editor.putString(chave_senha, senha);
         editor.commit();
     }
 
-    public String getIdentificador(){
-        return preferences.getString(chave_identificador, null);
+    public String getEmail(){
+        return preferences.getString(chave_email, null);
     }
 
-    public String getNome(){
-        return preferences.getString(chave_nome, null);
+    public String getSenha(){
+        return preferences.getString(chave_senha, null);
     }
 }

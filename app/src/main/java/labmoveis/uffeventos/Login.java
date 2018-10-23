@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.w3c.dom.Text;
 
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
+import labmoveis.uffeventos.Config.Preferencias;
 import labmoveis.uffeventos.Objetos.Usuário;
 
 
@@ -24,9 +26,10 @@ public class Login extends AppCompatActivity {
 
     private EditText email;
     private EditText senha;
-    private Button btlogin;
     private TextView mensagemErro;
     private Usuário usuario;
+    private CheckBox checkbox;
+    private Preferencias preferencias;
 
     private FirebaseAuth autenticacao;
 
@@ -37,17 +40,26 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         email = (EditText) findViewById(R.id.login_email);
         senha = (EditText) findViewById(R.id.login_senha);
-        btlogin = (Button) findViewById(R.id.login_login);
         mensagemErro = (TextView) findViewById(R.id.login_mensagem_erro);
+        checkbox = (CheckBox) findViewById(R.id.login_checkbox);
         usuario = new Usuário();
+        preferencias = new Preferencias(Login.this);
+
+        email.setText(preferencias.getEmail());
+        senha.setText(preferencias.getSenha());
     }
 
     public void fazerLogin(View view) {
-        if(email.getText().toString().equals("") && senha.getText().toString().equals("")){
+        if(email.getText().toString().equals("") || senha.getText().toString().equals("")){
             mensagemErro.setText("Preencha todos os campos!");
         }else{
             usuario.setEmail(email.getText().toString());
             usuario.setSenha(senha.getText().toString());
+
+            if(checkbox.isChecked()){
+                preferencias.salvarPreferencias(usuario.getEmail(), usuario.getSenha());
+            }
+
             AutenticarLogin();
         }
     }
