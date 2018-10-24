@@ -3,7 +3,7 @@ package labmoveis.uffeventos.Config;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class Preferencias {
+public class PreferenciasLogin {
 
     private Context context;
     private SharedPreferences preferences;
@@ -14,7 +14,7 @@ public class Preferencias {
     private final String chave_email = "emailUsuarioLogado";
     private final String chave_senha = "senhaUsuarioLogado";
 
-    public Preferencias(Context context) {
+    public PreferenciasLogin(Context context) {
         this.context = context;
         preferences = context.getSharedPreferences(nomeArquivo, mode);
         editor = preferences.edit();

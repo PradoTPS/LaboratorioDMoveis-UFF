@@ -61,8 +61,6 @@ public class Cadastro extends AppCompatActivity {
                     usuario.setCampus(campus.getText().toString());
                     usuario.setEmail(email.getText().toString());
                     usuario.setSenha(senha.getText().toString());
-                    id = Base64Custom.codifica(email.getText().toString()); //cria um código a partir do email
-                    usuario.setId(id);
 
                     cadastraInfos();
 
@@ -85,10 +83,12 @@ public class Cadastro extends AppCompatActivity {
                     mensagemerro.setText("Cadastrado com sucesso!");
                     FirebaseUser usuarioFirebase = task.getResult().getUser();
                     usuario.salvar();
+                    finish();
                 }else{
-                    if(task.getException().getMessage().substring(0, 9).equals("The given")){
+                    mensagemerro.setText(task.getException().getMessage());
+                    if(usuario.getSenha().length() < 6){
                         mensagemerro.setText("Esse email já está em uso!");
-                    }else if(task.getException().getMessage().substring(0, 17).equals("The email address")) {
+                    }else if(task.getException().getMessage().substring(0, 54).equals("The email address is already in use by another account")) {
                         mensagemerro.setText("A senha deve ter, ao menos, 6 caracteres!");
                     }else{
                         mensagemerro.setText(task.getException().getMessage());

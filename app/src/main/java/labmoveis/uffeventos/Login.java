@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,10 +14,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
-
+import labmoveis.uffeventos.Config.Base64Custom;
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
-import labmoveis.uffeventos.Config.Preferencias;
+import labmoveis.uffeventos.Config.LoginAtual;
+import labmoveis.uffeventos.Config.PreferenciasLogin;
 import labmoveis.uffeventos.Objetos.Usuário;
 
 
@@ -29,7 +28,8 @@ public class Login extends AppCompatActivity {
     private TextView mensagemErro;
     private Usuário usuario;
     private CheckBox checkbox;
-    private Preferencias preferencias;
+    private PreferenciasLogin preferencias;
+    private LoginAtual loginAtual;
 
     private FirebaseAuth autenticacao;
 
@@ -43,8 +43,8 @@ public class Login extends AppCompatActivity {
         mensagemErro = (TextView) findViewById(R.id.login_mensagem_erro);
         checkbox = (CheckBox) findViewById(R.id.login_checkbox);
         usuario = new Usuário();
-        preferencias = new Preferencias(Login.this);
-
+        preferencias = new PreferenciasLogin(Login.this);
+        loginAtual = new LoginAtual(Login.this);
         email.setText(preferencias.getEmail());
         senha.setText(preferencias.getSenha());
     }
@@ -70,7 +70,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    mensagemErro.setText("As informações estão corretas!");
+                    mensagemErro.setText(" ");
+                    loginAtual.salvarLogin(usuario.getId());
                     Intent TelaInicial = new Intent(Login.this, MainActivity.class);
                     startActivity(TelaInicial);
                 }else{
