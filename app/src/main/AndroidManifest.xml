@@ -22,6 +22,23 @@
                 <action android:name="OPEN_LOGIN" />
                 <category android:name="android.intent.category.DEFAULT" />
                 -->
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Cadastro" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <!--
+                <action android:name="OPEN_LOGIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                -->
+            </intent-filter>
+        </activity>
+
+        //Inicia a tela Events quando OPEN_EVENTSSCREEN for chamada
+        <activity android:name=".Events">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Login">
