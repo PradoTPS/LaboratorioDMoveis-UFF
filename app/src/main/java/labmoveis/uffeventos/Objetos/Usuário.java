@@ -3,6 +3,7 @@ package labmoveis.uffeventos.Objetos;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +16,19 @@ public class Usuário {
     private String campus;
     private String email;
     private String senha;
+    private ArrayList<Evento> eventosCadastrados;
+    private ArrayList<Evento> eventosInteresse;
     //o Firebase não aceita um monte de coisas para colocar como nome de um filho
     //por isso coloquei o email numa base, que dai ele vai aceitar
     private String id;
 
     public Usuário() {
+        eventosCadastrados = new ArrayList<>();
+        eventosInteresse = new ArrayList<>();
+        Evento evento = new Evento();
+        evento.setNome("Evento1");
+        eventosInteresse.add(evento);
+        eventosCadastrados.add(evento);
     }
 
     public void salvar(){ //coloca o hashmap do usuário como um filho de usuarios no BD
@@ -35,8 +44,30 @@ public class Usuário {
         hashmapUsuario.put("Campus", getCampus());
         hashmapUsuario.put("Email", getEmail());
         hashmapUsuario.put("Senha", getSenha());
+        hashmapUsuario.put("eventos cadastrados", getEventosCadastrados());
+        hashmapUsuario.put("eventos interesses", getEventosInteresse());
 
         return hashmapUsuario;
+    }
+
+    public ArrayList<Evento> getEventosInteresse() {
+        return eventosInteresse;
+    }
+
+    public void adicionarEventoInteresse(Evento evento) {
+        if(!this.eventosInteresse.contains(evento)) {
+            this.eventosInteresse.add(evento);
+        }
+    }
+
+    public ArrayList<Evento> getEventosCadastrados() {
+        return eventosCadastrados;
+    }
+
+    public void adicionarEventoCadastrado(Evento evento) {
+        if(!this.eventosCadastrados.contains(evento)) {
+            this.eventosCadastrados.add(evento);
+        }
     }
 
     public String getId() { return id; }
