@@ -6,7 +6,6 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
-import labmoveis.uffeventos.Config.Base64Custom;
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 
 public class Usuário {
@@ -41,6 +40,8 @@ public class Usuário {
 
     public String getId() { return id; }
 
+    public void setId(String id) { this.id = id; }
+
     public String getNome() {
         return nome;
     }
@@ -62,7 +63,6 @@ public class Usuário {
     }
 
     public void setEmail(String email) {
-        this.id = Base64Custom.codifica(email.toLowerCase());
         this.email = email.toLowerCase();
     }
 
