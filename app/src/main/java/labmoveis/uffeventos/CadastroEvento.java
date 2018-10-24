@@ -30,7 +30,7 @@ public class CadastroEvento extends AppCompatActivity {
         this.publico = findViewById(R.id.publico_id);
         this.desc = findViewById(R.id.descricao_id);
 
-        this.btnCadastro = findViewById(R.id.btn_cadastrar);
+        //this.btnCadastro = findViewById(R.id.btn_cadastrar);
 
     }
 

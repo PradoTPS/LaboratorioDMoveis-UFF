@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Cadastro"></activity>
-        <activity android:name=".Login">
+        <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".Cadastro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,21 @@
                 -->
             </intent-filter>
         </activity>
-        <activity android:name=".CadastroEvento"></activity>
+        <activity android:name=".Login">
+
+        </activity>
+        <activity android:name=".CadastroEvento">
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="OPEN_LOGIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+            </intent-filter>-->
+        </activity>
     </application>
 
 </manifest>
