@@ -32,5 +32,6 @@ public class Events extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new EventsList(myDataset);
         mRecyclerView.setAdapter(mAdapter);
+        
     }
 }
