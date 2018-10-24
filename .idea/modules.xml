@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/LaboratorioDMoveis-UFF.iml" filepath="$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/LaboratorioDMoveis-UFF.iml" />
+      <module fileurl="file://$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/app/app.iml" filepath="$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/app/app.iml" />
+      <module fileurl="file://$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/smartloginlibrary-v0.5beta/smartloginlibrary-v0.5beta.iml" filepath="$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/smartloginlibrary-v0.5beta/smartloginlibrary-v0.5beta.iml" />
+    </modules>
+  </component>
+</project>
