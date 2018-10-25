@@ -15,17 +15,16 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/fundo_praia" />
+            android:src="@drawable/fundo_praia" />
 
         <TextView
             android:id="@+id/titleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:paddingTop="20dp"
             android:text="Apreciação da praia"
             android:textColor="@android:color/black"
             android:textColorLink="#000000"
@@ -39,15 +38,18 @@
             android:layout_height="1dp"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:background="@android:color/darker_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="20dp"
             android:layout_weight="0"
             android:orientation="horizontal">
 

@@ -38,6 +38,7 @@
                     android:background="#8cCDCDCD"
                     android:gravity="center"
                     android:text="oi"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -53,18 +54,21 @@
                     android:id="@+id/data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
                     android:text="oi" />
 
                 <TextView
                     android:id="@+id/horario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
                     android:text="oi" />
 
                 <TextView
                     android:id="@+id/local"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
                     android:text="oi" />
 
                 <LinearLayout
@@ -77,6 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ver mais"
+                        android:textColor="@android:color/black"
                         android:onClick="abrirInfo"/>
 
                     <Button

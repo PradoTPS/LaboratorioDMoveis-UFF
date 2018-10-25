@@ -49,7 +49,8 @@ public class Login extends AppCompatActivity {
         senha.setText(preferencias.getSenha());
     }
 
-
+    //r@fael.com
+    //123456
     public void fazerLogin(View view) {
         if(email.getText().toString().equals("") || senha.getText().toString().equals("")){
             mensagemErro.setText("Preencha todos os campos!");

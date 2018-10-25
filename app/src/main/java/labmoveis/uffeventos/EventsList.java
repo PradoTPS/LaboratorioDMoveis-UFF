@@ -48,18 +48,6 @@ public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
         data.setText("Data: "+mDataset[position].data);
         horario.setText("Horário: "+mDataset[position].horario);
         local.setText("Local: "+mDataset[position].local);
-
-        //definindo acao do botao mais detalhes
-        Button bt_mais = holder.mCardView.findViewById(R.id.maisdetalhes);
-        bt_mais.setOnClickListener(new View.OnClickListener() {
-            //Adicionar atividade que será executada.
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent();
-                //it.setAction("");
-                //startActivity(it);
-            }
-        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

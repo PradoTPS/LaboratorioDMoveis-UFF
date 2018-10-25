@@ -1,26 +1,32 @@
 package labmoveis.uffeventos;
 
-import android.app.ProgressDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.MonthDay;
+import java.util.Calendar;
+import java.util.Date;
 
 import labmoveis.uffeventos.Config.Base64Custom;
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
@@ -41,6 +47,7 @@ public class CadastraEvento extends AppCompatActivity {
     private TextView mensagemErro;
     private EditText descricao;
 
+
     private ImageButton imgbutton;
 
     private String cod_imagem;
@@ -49,18 +56,19 @@ public class CadastraEvento extends AppCompatActivity {
 
     private Uri uri;
     private ProgressBar progressBar;
+    private DatePicker calendario;
     private StorageReference firebaseStorage;
     private static final int galery_intent = 2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastra_evento);
+
         nome = (EditText) findViewById(R.id.cadastro_evento_nome);
         campus = (EditText) findViewById(R.id.cadastro_evento_Campus);
         complementoLocal = (EditText) findViewById(R.id.cadastro_evento_complemento);
         resposnavel = (EditText) findViewById(R.id.cadastro_evento_responsavel);
-        data = (EditText) findViewById(R.id.cadastro_evento_data);
         duracao = (EditText) findViewById(R.id.cadastro_evento_duracao);
         vagas = (EditText) findViewById(R.id.cadastro_evento_vagas);
         publico = (EditText) findViewById(R.id.cadastro_evento_publico);
@@ -77,7 +85,20 @@ public class CadastraEvento extends AppCompatActivity {
 
         firebaseStorage = FirebaseStorage.getInstance().getReference();
 
+        calendario = findViewById(R.id.calendario_evento_cadastro);
 
+        data = findViewById(R.id.cadastro_evento_data);
+    }
+    public void calendario_visivel(View view){
+        calendario.setVisibility(View.VISIBLE);
+    }
+    public void calendario_clicked(View view){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int dia = calendario.getDayOfMonth();
+        int mes = calendario.getMonth();
+        int ano = calendario.getYear();
+        data.setText(sdf.format(new Date(ano, mes, dia)));
+        calendario.setVisibility(View.GONE);
     }
 
     public void mudarFoto(View view) {
