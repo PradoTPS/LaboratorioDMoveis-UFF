@@ -6,333 +6,339 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".InformacaoEvento" >
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/fundo_praia" />
-
-            <TextView
-                android:id="@+id/titleView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="20dp"
-                android:text="Apreciação da praia"
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="45dp"
-                android:layout_marginRight="45dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/darker_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:paddingTop="20dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="90sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="true"
-                    android:inputType="none|text"
-                    android:text="Data: "
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-                <TextView
-                    android:id="@+id/dataView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="20/10/2018"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="144sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="true"
-                    android:inputType="none|text"
-                    android:text="Horário:"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-                <TextView
-                    android:id="@+id/hourView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="14h às 17h"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="108sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="true"
-                    android:inputType="none|text"
-                    android:text="Local:"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-                <TextView
-                    android:id="@+id/localView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Campus Gragoatá"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="144sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="true"
-                    android:inputType="none|text"
-                    android:text="Público:"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-                <TextView
-                    android:id="@+id/publicView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Aberto ao público"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="220sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="true"
-                    android:inputType="none|text"
-                    android:text="Responsável: "
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-                <TextView
-                    android:id="@+id/responsavelView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="20/10/2018"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="234sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="true"
-                    android:inputType="none|text"
-                    android:text="Investimento: "
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-                <TextView
-                    android:id="@+id/investimentoView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="20/10/2018"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="126sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="true"
-                    android:inputType="none|text"
-                    android:text="Vagas: "
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-
-                <TextView
-                    android:id="@+id/vagasView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="20/10/2018"
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="0"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/fundo_praia" />
+
                 <TextView
+                    android:id="@+id/titleView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="true"
-                    android:inputType="none|text"
-                    android:text="Descrição:"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:text="Apreciação da praia"
                     android:textColor="@android:color/black"
                     android:textColorLink="#000000"
-                    android:textSize="18sp"
+                    android:textSize="28sp"
                     android:textStyle="bold"
                     android:typeface="sans"
                     app:fontFamily="sans-serif" />
 
-                <TextView
-                    android:id="@+id/descriptionView"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl."
-                    android:textColor="@android:color/black"
-                    android:textColorLink="#000000"
-                    android:textSize="18sp"
-                    android:typeface="sans"
-                    app:fontFamily="sans-serif" />
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:paddingTop="20dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="90sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autoText="true"
+                        android:inputType="none|text"
+                        android:text="Data: "
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                    <TextView
+                        android:id="@+id/dataView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="20/10/2018"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="144sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autoText="true"
+                        android:inputType="none|text"
+                        android:text="Horário:"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                    <TextView
+                        android:id="@+id/hourView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="14h às 17h"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="108sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autoText="true"
+                        android:inputType="none|text"
+                        android:text="Local:"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                    <TextView
+                        android:id="@+id/localView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Campus Gragoatá"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="144sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autoText="true"
+                        android:inputType="none|text"
+                        android:text="Público:"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                    <TextView
+                        android:id="@+id/publicView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Aberto ao público"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="220sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autoText="true"
+                        android:inputType="none|text"
+                        android:text="Responsável: "
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                    <TextView
+                        android:id="@+id/responsavelView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="20/10/2018"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="234sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autoText="true"
+                        android:inputType="none|text"
+                        android:text="Investimento: "
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                    <TextView
+                        android:id="@+id/investimentoView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="20/10/2018"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="126sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autoText="true"
+                        android:inputType="none|text"
+                        android:text="Vagas: "
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                    <TextView
+                        android:id="@+id/vagasView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="20/10/2018"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autoText="true"
+                        android:inputType="none|text"
+                        android:text="Descrição:"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                    <TextView
+                        android:id="@+id/descriptionView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl."
+                        android:textColor="@android:color/black"
+                        android:textColorLink="#000000"
+                        android:textSize="18sp"
+                        android:typeface="sans"
+                        app:fontFamily="sans-serif" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingActionButton"
