@@ -97,6 +97,7 @@ public class Cadastro extends AppCompatActivity {
                     mensagemerro.setText("Utilize uma conta da UFF!");
                 }
             }
+            clique = 0;
         }
     }
 
