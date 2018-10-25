@@ -5,15 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.Date;
-
 public class Events extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Date dt = new Date(198279);
-    private eventItem aux = new eventItem("nome", "local", "descricao","responsavel", "fundo_praia.jpg", dt,5, 100);
+    private eventItem aux = new eventItem("nome", "local", "descricao","responsavel", "fundo_praia.jpg", "20/10/2018","14h às 17h", "100");
     private eventItem[] myDataset = {aux, aux, aux, aux, aux, aux, aux, aux};
 
     protected void onCreate(Bundle savedInstanceState) {

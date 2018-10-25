@@ -1,11 +1,12 @@
 package labmoveis.uffeventos;
+
 import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
@@ -14,8 +15,8 @@ public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public CardView mCardView;
-        public MyViewHolder(CardView v) {
+        public LinearLayout mCardView;
+        public MyViewHolder(LinearLayout v) {
             super(v);
             mCardView = v;
         }
@@ -29,7 +30,7 @@ public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
     // cria a view e o manipulador da mesma
     @Override
     public EventsList.MyViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {
-        CardView v = (CardView) LayoutInflater.from(parent.getContext())
+        LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_eventscard, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -39,12 +40,14 @@ public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // populando as informações de cada item no layout
         TextView nome = holder.mCardView.findViewById(R.id.nome);
-        TextView descricao = holder.mCardView.findViewById(R.id.descricao);
+        TextView horario = holder.mCardView.findViewById(R.id.horario);
         TextView local = holder.mCardView.findViewById(R.id.local);
+        TextView data = holder.mCardView.findViewById(R.id.data);
 
         nome.setText(mDataset[position].nome);
-        descricao.setText(mDataset[position].descricao);
-        local.setText(mDataset[position].local);
+        data.setText("Data: "+mDataset[position].data);
+        horario.setText("Horário: "+mDataset[position].horario);
+        local.setText("Local: "+mDataset[position].local);
 
         //definindo acao do botao mais detalhes
         Button bt_mais = holder.mCardView.findViewById(R.id.maisdetalhes);
