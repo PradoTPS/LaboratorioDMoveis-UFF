@@ -6,6 +6,7 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
+import labmoveis.uffeventos.Config.Base64Custom;
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 
 public class Evento {
@@ -54,8 +55,8 @@ public class Evento {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId() {
+        this.id = Base64Custom.codifica(nome.concat(data).concat(responsavel));
     }
 
     public String getCodImagem() {

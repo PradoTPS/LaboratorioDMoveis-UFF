@@ -14,6 +14,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 import labmoveis.uffeventos.Config.Base64Custom;
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 import labmoveis.uffeventos.Objetos.Usuário;
@@ -80,7 +82,7 @@ public class Cadastro extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    mensagemerro.setText("Cadastrado com sucesso!");
+                    mensagemerro.setText(" ");
                     FirebaseUser usuarioFirebase = task.getResult().getUser();
                     usuario.salvar();
                     finish();

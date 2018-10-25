@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,23 +13,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
+
+
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent it = new Intent();
-        System.out.printf("%d", item.getItemId());
-        switch (item.getItemId()){
-            case(R.id.login):
-                it.setAction("OPEN_LOGIN");
-                startActivity(it);
-                break;
-        }
-        return true;
-    }*/
+    public void abrirEvento(View view) {
+        Intent intent = new Intent(MainActivity.this, CadastraEvento.class);
+        startActivity(intent);
+    }
 }

@@ -1,0 +1,150 @@
+package labmoveis.uffeventos;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import labmoveis.uffeventos.Config.Base64Custom;
+import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
+import labmoveis.uffeventos.Config.LoginAtual;
+import labmoveis.uffeventos.Objetos.Evento;
+
+public class CadastraEvento extends AppCompatActivity {
+
+    private EditText nome;
+    private EditText campus;
+    private EditText complementoLocal;
+    private EditText resposnavel;
+    private EditText data;
+    private EditText duracao;
+    private EditText vagas;
+    private EditText publico;
+    private EditText valor;
+    private TextView mensagemErro;
+    private EditText descricao;
+
+    private String cod_imagem;
+
+    private LoginAtual loginAtual;
+
+    private Uri uri;
+    private ProgressBar progressBar;
+    private StorageReference firebaseStorage;
+    private static final int galery_intent = 2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cadastra_evento);
+        nome = (EditText) findViewById(R.id.cadastro_evento_nome);
+        campus = (EditText) findViewById(R.id.cadastro_evento_Campus);
+        complementoLocal = (EditText) findViewById(R.id.cadastro_evento_complemento);
+        resposnavel = (EditText) findViewById(R.id.cadastro_evento_responsavel);
+        data = (EditText) findViewById(R.id.cadastro_evento_data);
+        duracao = (EditText) findViewById(R.id.cadastro_evento_duracao);
+        vagas = (EditText) findViewById(R.id.cadastro_evento_vagas);
+        publico = (EditText) findViewById(R.id.cadastro_evento_publico);
+        valor = (EditText) findViewById(R.id.cadastro_evento_investimento);
+        descricao = (EditText) findViewById(R.id.cadastro_evento_descricao);
+        mensagemErro = (TextView) findViewById(R.id.cadastra_evento_mensagem_erro);
+        progressBar = (ProgressBar) findViewById(R.id.cadastro_evento_progressbar);
+        progressBar.setVisibility(View.INVISIBLE);
+
+
+        loginAtual = new LoginAtual(CadastraEvento.this);
+
+        firebaseStorage = FirebaseStorage.getInstance().getReference();
+
+
+    }
+
+    public void mudarFoto(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+
+        startActivityForResult(intent, galery_intent); //chama a galeria do android
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == galery_intent && resultCode == RESULT_OK){
+            uri = data.getData(); //pega o caminho para a imagem no telefone do usuario
+        }
+    }
+
+    public void cadastrar(View view) {
+        if(nome.getText().toString().equals("") ||
+                complementoLocal.getText().toString().equals("") ||
+                campus.getText().toString().equals("") ||
+                resposnavel.getText().toString().equals("") ||
+                data.getText().toString().equals("") ||
+                duracao.getText().toString().equals("") ||
+                vagas.getText().toString().equals("") ||
+                publico.getText().toString().equals("") ||
+                valor.getText().toString().equals("") ||
+                descricao.getText().toString().equals("")){ //verifica os campos
+            mensagemErro.setText("Preencha todos os campos!");
+        }else{
+            if(uri != null) {
+                progressBar.setVisibility(View.VISIBLE); //mensagem na tela informando o carregamento
+                cod_imagem = Base64Custom.codifica(uri.toString()); //codifica o uri
+                StorageReference referencia = firebaseStorage.child("ImagensEventos").child(cod_imagem);
+                referencia.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() { //carrega o arquivo para o Storage
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) { //verifica se foi corretamente
+                        mensagemErro.setText(" ");
+                        Toast.makeText(CadastraEvento.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+                        cadastrarEvento();
+                        progressBar.setVisibility(View.INVISIBLE);
+                        finish();
+                    }
+
+                });
+            }else{
+                mensagemErro.setText("Escolha uma imagem");
+            }
+        }
+
+    }
+
+    private void cadastrarEvento() { //cria um evento e o cadastra no BD
+        Evento evento = new Evento();
+        evento.setNome(nome.getText().toString());
+        evento.setCampus(campus.getText().toString());
+        evento.setComplementoLocal(complementoLocal.getText().toString());
+        evento.setData(data.getText().toString());
+        evento.setDescricao(descricao.getText().toString());
+        evento.setDuracao(duracao.getText().toString());
+        evento.setInvestimento(valor.getText().toString());
+        evento.setVagas(vagas.getText().toString());
+        evento.setResponsavel(resposnavel.getText().toString());
+        evento.setCodImagem(cod_imagem);
+        evento.setPublico(publico.getText().toString());
+        evento.setId();
+
+        evento.salvar();
+        DatabaseReference referencia = ConfiguraçãoFirebase.getFirebase();
+        referencia.child("usuarios").child(loginAtual.getId()).child("eventos cadastrados").child(evento.getId()).setValue(evento.getNome()); //coloca a referencia do evento no cadastro do usuario
+
+    }
+}
