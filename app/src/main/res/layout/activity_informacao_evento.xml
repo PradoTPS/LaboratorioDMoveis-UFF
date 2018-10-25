@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InformacaoEvento" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:srcCompat="@color/botaoLogin" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:text="Nome do Evento Aqui"
+            android:textColor="@android:color/black"
+            android:textColorLink="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:typeface="sans"
+            app:fontFamily="sans-serif" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="90sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autoText="true"
+                android:inputType="none|text"
+                android:text="Data: "
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/dataView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="12/07/2018"
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="144sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autoText="true"
+                android:inputType="none|text"
+                android:text="Horário:"
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/hourView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="De 16h às 18h"
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="108sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autoText="true"
+                android:inputType="none|text"
+                android:text="Local:"
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/localView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Campus Gragoatá"
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="144sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autoText="true"
+                android:inputType="none|text"
+                android:text="Público:"
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/publicView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Aberto ao público"
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autoText="true"
+                android:inputType="none|text"
+                android:text="Descrição:"
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/descriptionView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl."
+                android:textColor="@android:color/black"
+                android:textColorLink="#000000"
+                android:textSize="18sp"
+                android:typeface="sans"
+                app:fontFamily="sans-serif" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/buttonView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/botao_login"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="Marcar Interesse"
+            android:textColorLink="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="false"
+            android:clickable="true"
+            app:srcCompat="@drawable/botao_login" />
+    </LinearLayout>
+
+</RelativeLayout>
