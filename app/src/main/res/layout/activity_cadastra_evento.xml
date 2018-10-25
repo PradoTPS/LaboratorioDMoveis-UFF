@@ -7,232 +7,249 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     android:orientation="vertical">
-    <ScrollView
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical|center_horizontal">
-
-
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical|center_horizontal">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/cadastrar_evento"
-                android:layout_weight="2"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_weight="2"
-                android:gravity="center_vertical"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="1"/>
 
-            <ImageButton
-                android:id="@+id/cadastra_evento_adiciona"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:text="+"
-                android:textSize="15sp"
-                android:src="@drawable/camera"
-                android:onClick="mudarFoto"
-                android:background="@drawable/btn_adicionar_pessoas"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/cadastrar_evento"
+                    android:layout_weight="2"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_weight="3"
-                android:gravity="center_horizontal">
-                <ProgressBar
-                    android:id="@+id/cadastro_evento_progressbar"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
+                    android:layout_height="20dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"/>
 
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
+                <ImageButton
+                    android:id="@+id/cadastra_evento_adiciona"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="+"
+                    android:textSize="15sp"
+                    android:src="@drawable/camera"
+                    android:onClick="mudarFoto"
+                    android:background="@drawable/btn_adicionar_pessoas"/>
 
-                <EditText
-                    android:id="@+id/cadastro_evento_nome"
+                <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="3"
+                    android:gravity="center_horizontal">
+                    <ProgressBar
+                        android:id="@+id/cadastro_evento_progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="Título"
-                    android:ems="10" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
+                    android:orientation="vertical"
+                    android:layout_weight="2">
 
-                <EditText
-                    android:id="@+id/cadastro_evento_descricao"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:maxLength="400"
-                    android:hint="Descrição"
-                    android:ems="10" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
-
-                <EditText
-                    android:id="@+id/cadastro_evento_Campus"
-                    android:layout_width="match_parent"
+                    <EditText
+                        android:id="@+id/cadastro_evento_nome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Título"
+                        android:ems="10" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="Campus"
-                    android:ems="10" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
+                    android:orientation="vertical"
+                    android:layout_weight="2">
 
-                <EditText
-                    android:id="@+id/cadastro_evento_complemento"
-                    android:layout_width="match_parent"
+                    <EditText
+                        android:id="@+id/cadastro_evento_descricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:maxLength="400"
+                        android:hint="Descrição"
+                        android:ems="10" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="Local"
-                    android:ems="10" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
+                    android:orientation="vertical"
+                    android:layout_weight="2">
 
-                <EditText
-                    android:id="@+id/cadastro_evento_responsavel"
-                    android:layout_width="match_parent"
+                    <EditText
+                        android:id="@+id/cadastro_evento_Campus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Campus"
+                        android:ems="10" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="Responsável"
-                    android:ems="10" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
+                    android:orientation="vertical"
+                    android:layout_weight="2">
 
-
-                <EditText
-                    android:id="@+id/cadastro_evento_data"
-                    android:layout_width="match_parent"
+                    <EditText
+                        android:id="@+id/cadastro_evento_complemento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Local"
+                        android:ems="10" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="Data"
-                    android:ems="10"
-                    android:editable="false"
-                    android:onClick="calendario_visivel"
-                    android:clickable="true"/>
+                    android:orientation="vertical"
+                    android:layout_weight="2">
 
-                <DatePicker
-                    android:id="@+id/calendario_evento_cadastro"
+                    <EditText
+                        android:id="@+id/cadastro_evento_responsavel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Responsável"
+                        android:ems="10" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+
+
+                    <EditText
+                        android:id="@+id/cadastro_evento_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Data"
+                        android:ems="10"
+                        android:editable="false"
+                        android:onClick="calendario_visivel"
+                        android:clickable="true"/>
+
+                    <DatePicker
+                        android:id="@+id/calendario_evento_cadastro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:onClick="calendario_clicked"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+
+                    <EditText
+                        android:id="@+id/cadastro_evento_duracao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Duração em horas"
+                        android:ems="10"
+                        android:inputType="numberDecimal"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+
+                    <EditText
+                        android:id="@+id/cadastro_evento_vagas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Vagas"
+                        android:ems="10"
+                        android:inputType="number"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+
+                    <EditText
+                        android:id="@+id/cadastro_evento_publico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Público"
+                        android:ems="10" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+
+                    <EditText
+                        android:id="@+id/cadastro_evento_investimento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Valor"
+                        android:ems="10"
+                        android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:id="@+id/cadastra_evento_mensagem_erro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "
+                        android:textColor="@color/mensagemdeerro"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/cadastro_cadastrar"
+                    android:layout_width="260dp"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:onClick="calendario_clicked"/>
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"
+                    android:text="Criar evento"
+                    android:background="@drawable/botao_login"
+                    android:onClick="cadastrar"/>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
-
-                <EditText
-                    android:id="@+id/cadastro_evento_duracao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Duração em horas"
-                    android:ems="10"
-                    android:inputType="numberDecimal"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
-
-                <EditText
-                    android:id="@+id/cadastro_evento_vagas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Vagas"
-                    android:ems="10"
-                    android:inputType="number"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
-
-                <EditText
-                    android:id="@+id/cadastro_evento_publico"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Público"
-                    android:ems="10" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
-
-                <EditText
-                    android:id="@+id/cadastro_evento_investimento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Valor"
-                    android:ems="10"
-                    android:inputType="number"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_weight="3">
-
-                <TextView
-                    android:id="@+id/cadastra_evento_mensagem_erro"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" "
-                    android:textColor="@color/mensagemdeerro"/>
+                    android:layout_height="20dp"
+                    android:layout_weight="2"/>
 
             </LinearLayout>
+        </ScrollView>
 
-            <Button
-                android:id="@+id/cadastro_cadastrar"
-                android:layout_width="260dp"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:text="Criar evento"
-                android:background="@drawable/botao_login"
-                android:onClick="cadastrar"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-    </ScrollView>
+        <ImageButton
+            android:id="@+id/fcadastraEventoFloatingActionButton"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="false"
+            android:clickable="true"
+            android:src="@drawable/back"
+            android:layout_gravity="left|top"
+            android:background="@null"
+            android:onClick="home"/>
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

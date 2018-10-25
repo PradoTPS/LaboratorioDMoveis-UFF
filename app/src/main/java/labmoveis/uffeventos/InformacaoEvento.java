@@ -31,4 +31,8 @@ public class InformacaoEvento extends AppCompatActivity {
 
 
     }
+
+    public void home(View view) {
+        finish();
+    }
 }

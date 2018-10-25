@@ -173,4 +173,8 @@ public class CadastraEvento extends AppCompatActivity {
         referencia.child("usuarios").child(loginAtual.getId()).child("eventos cadastrados").child(evento.getId()).setValue(evento.getNome()); //coloca a referencia do evento no cadastro do usuario
 
     }
+
+    public void home(View view) {
+        finish();
+    }
 }

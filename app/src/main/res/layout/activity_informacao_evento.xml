@@ -6,237 +6,230 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".InformacaoEvento" >
-
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/fundo_praia" />
-
-        <TextView
-            android:id="@+id/titleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="20dp"
-            android:text="Apreciação da praia"
-            android:textColor="@android:color/black"
-            android:textColorLink="#000000"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:typeface="sans"
-            app:fontFamily="sans-serif" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="45dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:paddingTop="20dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="90sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autoText="true"
-                android:inputType="none|text"
-                android:text="Data: "
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-
-            <TextView
-                android:id="@+id/dataView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="20/10/2018"
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="144sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autoText="true"
-                android:inputType="none|text"
-                android:text="Horário:"
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-
-            <TextView
-                android:id="@+id/hourView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="14h às 17h"
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="108sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autoText="true"
-                android:inputType="none|text"
-                android:text="Local:"
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-
-            <TextView
-                android:id="@+id/localView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Campus Gragoatá"
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="144sp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autoText="true"
-                android:inputType="none|text"
-                android:text="Público:"
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-
-            <TextView
-                android:id="@+id/publicView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Aberto ao público"
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="0"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fundo_praia" />
+
             <TextView
+                android:id="@+id/titleView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autoText="true"
-                android:inputType="none|text"
-                android:text="Descrição:"
+                android:gravity="center"
+                android:paddingTop="20dp"
+                android:text="Apreciação da praia"
                 android:textColor="@android:color/black"
                 android:textColorLink="#000000"
-                android:textSize="18sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:typeface="sans"
                 app:fontFamily="sans-serif" />
 
-            <TextView
-                android:id="@+id/descriptionView"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl."
-                android:textColor="@android:color/black"
-                android:textColorLink="#000000"
-                android:textSize="18sp"
-                android:typeface="sans"
-                app:fontFamily="sans-serif" />
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="20dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="90sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoText="true"
+                    android:inputType="none|text"
+                    android:text="Data: "
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+                <TextView
+                    android:id="@+id/dataView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20/10/2018"
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="144sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoText="true"
+                    android:inputType="none|text"
+                    android:text="Horário:"
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+                <TextView
+                    android:id="@+id/hourView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="14h às 17h"
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="108sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoText="true"
+                    android:inputType="none|text"
+                    android:text="Local:"
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+                <TextView
+                    android:id="@+id/localView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Campus Gragoatá"
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="144sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoText="true"
+                    android:inputType="none|text"
+                    android:text="Público:"
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+                <TextView
+                    android:id="@+id/publicView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Aberto ao público"
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoText="true"
+                    android:inputType="none|text"
+                    android:text="Descrição:"
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+                <TextView
+                    android:id="@+id/descriptionView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac nunc mattis, lobortis ante eu, laoreet turpis. Proin ut eros lobortis, semper odio at, tincidunt nisl."
+                    android:textColor="@android:color/black"
+                    android:textColorLink="#000000"
+                    android:textSize="18sp"
+                    android:typeface="sans"
+                    app:fontFamily="sans-serif" />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="end|bottom"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="25dp"
-        android:orientation="horizontal">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -247,8 +240,21 @@
             android:clickable="true"
             app:elevation="0dp"
             android:src="@drawable/checked"
+            android:layout_gravity="right|bottom"
             android:background="@drawable/botao_login"
             android:onClick="marcaInteresse"/>
-    </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/eventoFloatingActionButton"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="false"
+            android:clickable="true"
+            android:src="@drawable/back"
+            android:layout_gravity="left|top"
+            android:background="@null"
+            android:onClick="home"/>
+    </FrameLayout>
 
 </RelativeLayout>
