@@ -6,13 +6,16 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
 
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_uff_eventos"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_uff_eventos"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".Events"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".Cadastro"></activity>
         <activity android:name=".Login">
@@ -25,11 +28,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 -->
             </intent-filter>
-
         </activity>
         <activity android:name=".CadastraEvento">
 
         </activity>
+        <activity android:name=".InformacaoEvento"></activity>
     </application>
 
 </manifest>
