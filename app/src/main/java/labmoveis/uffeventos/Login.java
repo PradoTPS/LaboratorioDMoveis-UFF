@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +31,8 @@ public class Login extends AppCompatActivity {
     private CheckBox checkbox;
     private PreferenciasLogin preferencias;
     private LoginAtual loginAtual;
+    private int clique;
+    private ProgressBar progressBar;
 
     private FirebaseAuth autenticacao;
 
@@ -47,22 +50,26 @@ public class Login extends AppCompatActivity {
         loginAtual = new LoginAtual(Login.this);
         email.setText(preferencias.getEmail());
         senha.setText(preferencias.getSenha());
+        clique = 0;
+        progressBar = (ProgressBar) findViewById(R.id.login_progressbar);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
-    //r@fael.com
-    //123456
     public void fazerLogin(View view) {
-        if(email.getText().toString().equals("") || senha.getText().toString().equals("")){
-            mensagemErro.setText("Preencha todos os campos!");
-        }else{
-            usuario.setEmail(email.getText().toString());
-            usuario.setSenha(senha.getText().toString());
+        if(clique == 0){
+            clique = 1;
+            if(email.getText().toString().equals("") || senha.getText().toString().equals("")){
+                mensagemErro.setText("Preencha todos os campos!");
+            }else{
+                usuario.setEmail(email.getText().toString());
+                usuario.setSenha(senha.getText().toString());
 
-            if(checkbox.isChecked()){
-                preferencias.salvarPreferencias(usuario.getEmail(), usuario.getSenha());
+                if(checkbox.isChecked()){
+                    preferencias.salvarPreferencias(usuario.getEmail(), usuario.getSenha());
+                }
+                progressBar.setVisibility(View.VISIBLE);
+                AutenticarLogin();
             }
-
-            AutenticarLogin();
         }
     }
 
@@ -74,17 +81,25 @@ public class Login extends AppCompatActivity {
                 if(task.isSuccessful()){
                     mensagemErro.setText(" ");
                     loginAtual.salvarLogin(usuario.getId());
+                    progressBar.setVisibility(View.INVISIBLE);
                     Intent abrirEventos = new Intent(Login.this, Events.class);
                     startActivity(abrirEventos);
+                    finish();
                 }else{
                     mensagemErro.setText("As informações estão incorretas!");
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
+                clique = 0;
             }
         });
     }
 
     public void cadastrar(View view) {
-        Intent abrirCadastro = new Intent(Login.this, Cadastro.class);
-        startActivity(abrirCadastro);
+        if(clique == 0){
+            clique = 1;
+            Intent abrirCadastro = new Intent(Login.this, Cadastro.class);
+            startActivity(abrirCadastro);
+            clique = 0;
+        }
     }
 }

@@ -4,8 +4,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +31,8 @@ public class Cadastro extends AppCompatActivity {
     private TextView mensagemerro;
     private Usuário usuario;
     private String id;
+    private ProgressBar progressBar;
+    int clique;
 
     private FirebaseAuth autenticacao;
 
@@ -44,33 +48,54 @@ public class Cadastro extends AppCompatActivity {
         mensagemerro = (TextView) findViewById(R.id.cadastro_mensagem_erro);
         mensagemerro.setText("");
         usuario = new Usuário();
+        progressBar = (ProgressBar) findViewById(R.id.cadastro_progressbar);
+        progressBar.setVisibility(View.INVISIBLE);
+        clique = 0;
+        //botão voltar no topo
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /*
+    botão voltar no topo
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }*/
+
     public void cadastrar(View view) {
-        if(nome.getText().toString().equals("") ||
-                campus.getText().toString().equals("") ||
-                email.getText().toString().equals("") ||
-                senha.getText().toString().equals("") ||
-                confirmasenha.getText().toString().equals("")){
-            mensagemerro.setText("Preencha todos os campos!");
-        }else {
-            if(email.getText().toString().substring(
-                    email.getText().toString().length()-6, //confirma se é terminado em "uff.br"
-                    email.getText().toString().length()).toLowerCase().equals("uff.br")){
+        if(clique == 0) {
+            clique = 1;
+            if (nome.getText().toString().equals("") ||
+                    campus.getText().toString().equals("") ||
+                    email.getText().toString().equals("") ||
+                    senha.getText().toString().equals("") ||
+                    confirmasenha.getText().toString().equals("")) {
+                mensagemerro.setText("Preencha todos os campos!");
+            } else {
+                if (email.getText().toString().substring(
+                        email.getText().toString().length() - 6, //confirma se é terminado em "uff.br"
+                        email.getText().toString().length()).toLowerCase().equals("uff.br")) {
 
-                if (senha.getText().toString().equals(confirmasenha.getText().toString())) {
-                    usuario.setNome(nome.getText().toString());
-                    usuario.setCampus(campus.getText().toString());
-                    usuario.setEmail(email.getText().toString());
-                    usuario.setSenha(senha.getText().toString());
+                    if (senha.getText().toString().equals(confirmasenha.getText().toString())) {
+                        usuario.setNome(nome.getText().toString());
+                        usuario.setCampus(campus.getText().toString());
+                        usuario.setEmail(email.getText().toString());
+                        usuario.setSenha(senha.getText().toString());
+                        progressBar.setVisibility(View.VISIBLE);
+                        cadastraInfos();
 
-                    cadastraInfos();
-
+                    } else {
+                        mensagemerro.setText("As senhas não são compatíveis!");
+                    }
                 } else {
-                    mensagemerro.setText("As senhas não são compatíveis!");
+                    mensagemerro.setText("Utilize uma conta da UFF!");
                 }
-            }else{
-                mensagemerro.setText("Utilize uma conta da UFF!");
             }
         }
     }
@@ -84,6 +109,7 @@ public class Cadastro extends AppCompatActivity {
                 if(task.isSuccessful()){
                     mensagemerro.setText(" ");
                     FirebaseUser usuarioFirebase = task.getResult().getUser();
+                    progressBar.setVisibility(View.INVISIBLE);
                     usuario.salvar();
                     finish();
                 }else{
@@ -95,8 +121,14 @@ public class Cadastro extends AppCompatActivity {
                     }else{
                         mensagemerro.setText(task.getException().getMessage());
                     }
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
+                clique = 0;
             }
         });
+    }
+
+    public void home(View view) {
+        finish();
     }
 }
