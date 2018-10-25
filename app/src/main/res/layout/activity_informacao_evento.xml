@@ -15,8 +15,9 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            app:srcCompat="@color/botaoLogin" />
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/fundo_praia" />
 
         <TextView
             android:id="@+id/titleView"
@@ -25,7 +26,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
-            android:text="Nome do Evento Aqui"
+            android:text="Apreciação da praia"
             android:textColor="@android:color/black"
             android:textColorLink="#000000"
             android:textSize="28sp"
@@ -69,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="12/07/2018"
+                android:text="20/10/2018"
                 android:textColor="@android:color/black"
                 android:textColorLink="#000000"
                 android:textSize="18sp"
@@ -104,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="De 16h às 18h"
+                android:text="14h às 17h"
                 android:textColor="@android:color/black"
                 android:textColorLink="#000000"
                 android:textSize="18sp"
@@ -235,30 +236,17 @@
         android:layout_marginBottom="25dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/buttonView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/botao_login"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:text="Marcar Interesse"
-            android:textColorLink="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingActionButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_weight="0"
             android:adjustViewBounds="false"
             android:clickable="true"
-            app:srcCompat="@drawable/botao_login" />
+            app:elevation="0dp"
+            android:src="@drawable/checked"
+            android:background="@drawable/botao_login"
+            android:onClick="marcaInteresse"/>
     </LinearLayout>
 
 </RelativeLayout>

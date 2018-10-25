@@ -41,6 +41,8 @@ public class CadastraEvento extends AppCompatActivity {
     private TextView mensagemErro;
     private EditText descricao;
 
+    private ImageButton imgbutton;
+
     private String cod_imagem;
 
     private LoginAtual loginAtual;
@@ -68,6 +70,8 @@ public class CadastraEvento extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.cadastro_evento_progressbar);
         progressBar.setVisibility(View.INVISIBLE);
 
+        imgbutton = (ImageButton) findViewById(R.id.cadastra_evento_adiciona);
+
 
         loginAtual = new LoginAtual(CadastraEvento.this);
 
@@ -89,6 +93,7 @@ public class CadastraEvento extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == galery_intent && resultCode == RESULT_OK){
             uri = data.getData(); //pega o caminho para a imagem no telefone do usuario
+            imgbutton.setImageResource(R.drawable.checked);
         }
     }
 

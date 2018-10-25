@@ -73,8 +73,8 @@ public class Login extends AppCompatActivity {
                 if(task.isSuccessful()){
                     mensagemErro.setText(" ");
                     loginAtual.salvarLogin(usuario.getId());
-                    Intent TelaInicial = new Intent(Login.this, MainActivity.class);
-                    startActivity(TelaInicial);
+                    Intent abrirEventos = new Intent(Login.this, Events.class);
+                    startActivity(abrirEventos);
                 }else{
                     mensagemErro.setText("As informações estão incorretas!");
                 }

@@ -3,10 +3,10 @@
     android:shape="rectangle">
 
     <solid
-        android:color="#0F4CAC"></solid>
+        android:color="@color/botaoLogin"></solid>
 
     <corners
-        android:radius="25dp"
+        android:radius="50dp"
         />
 
     <stroke
