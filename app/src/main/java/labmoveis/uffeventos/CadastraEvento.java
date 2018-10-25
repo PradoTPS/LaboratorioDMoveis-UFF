@@ -74,12 +74,26 @@ public class CadastraEvento extends AppCompatActivity {
         publico = (EditText) findViewById(R.id.cadastro_evento_publico);
         valor = (EditText) findViewById(R.id.cadastro_evento_investimento);
         descricao = (EditText) findViewById(R.id.cadastro_evento_descricao);
+        data = (EditText) findViewById(R.id.cadastro_evento_data);
         mensagemErro = (TextView) findViewById(R.id.cadastra_evento_mensagem_erro);
         progressBar = (ProgressBar) findViewById(R.id.cadastro_evento_progressbar);
         progressBar.setVisibility(View.INVISIBLE);
 
         imgbutton = (ImageButton) findViewById(R.id.cadastra_evento_adiciona);
 
+        data.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    data.setEnabled(false);
+                    calendario.setVisibility(View.VISIBLE);
+                } else {
+                    data.setEnabled(true);
+                    calendario_clicked();
+                    calendario.setVisibility(View.GONE);
+                }
+            }
+        });
 
         loginAtual = new LoginAtual(CadastraEvento.this);
 
@@ -89,11 +103,9 @@ public class CadastraEvento extends AppCompatActivity {
 
         data = findViewById(R.id.cadastro_evento_data);
     }
-    public void calendario_visivel(View view){
-        calendario.setVisibility(View.VISIBLE);
-    }
-    public void calendario_clicked(View view){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    public void calendario_clicked(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YY");
         int dia = calendario.getDayOfMonth();
         int mes = calendario.getMonth();
         int ano = calendario.getYear();

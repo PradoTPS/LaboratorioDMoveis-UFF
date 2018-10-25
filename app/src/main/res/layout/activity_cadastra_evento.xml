@@ -139,16 +139,13 @@
                         android:layout_height="wrap_content"
                         android:hint="Data"
                         android:ems="10"
-                        android:editable="false"
-                        android:onClick="calendario_visivel"
                         android:clickable="true"/>
 
                     <DatePicker
                         android:id="@+id/calendario_evento_cadastro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:onClick="calendario_clicked"/>
+                        android:visibility="gone"/>
 
                 </LinearLayout>
                 <LinearLayout
