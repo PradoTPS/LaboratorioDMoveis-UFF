@@ -7,18 +7,42 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
+
 public class Events extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private eventItem aux = new eventItem("Apreciação da praia", "Campus Gragoatá", "descricao","responsavel", "fundo_praia.jpg", "20/10/2018","14h às 17h", "100");
-    private eventItem[] myDataset = {aux, aux, aux, aux, aux, aux, aux, aux};
+    private List<DataSnapshot> myDataset = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events);
-        carregaRecycleView();
+        DatabaseReference firebase = ConfiguraçãoFirebase.getFirebase();
+        firebase.child("eventos").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                        myDataset.add(child);
+                }
+                setContentView(R.layout.activity_events);
+                carregaRecycleView();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
     }
 
     public void cadastrarNovoEvento(View view) {
@@ -39,6 +63,7 @@ public class Events extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
+        System.out.println(myDataset.size());
         mAdapter = new EventsList(myDataset);
         mRecyclerView.setAdapter(mAdapter);
     }
