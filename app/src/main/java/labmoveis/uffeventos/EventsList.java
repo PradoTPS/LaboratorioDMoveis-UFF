@@ -49,7 +49,7 @@ public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
 
         nome.setText("Nome: "+item.child("nome").getValue().toString());
         data.setText("Data: "+item.child("data").getValue().toString());
-        //horario.setText("Horário: "+item.child("nome").getValue().toString());
+        horario.setText("Horário: "+item.child("duracao").getValue().toString());
         local.setText("Local: "+item.child("campus").getValue().toString());
     }
 

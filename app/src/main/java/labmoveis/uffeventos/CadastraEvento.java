@@ -105,7 +105,7 @@ public class CadastraEvento extends AppCompatActivity {
     }
 
     public void calendario_clicked(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YY");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
         int dia = calendario.getDayOfMonth();
         int mes = calendario.getMonth();
         int ano = calendario.getYear();
