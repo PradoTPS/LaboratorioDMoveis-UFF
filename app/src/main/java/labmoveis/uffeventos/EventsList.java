@@ -1,3 +1,4 @@
+
 package labmoveis.uffeventos;
 
 import android.support.v7.widget.RecyclerView;
@@ -47,7 +48,7 @@ public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
         TextView data = holder.mCardView.findViewById(R.id.data);
 
 
-        nome.setText("Nome: "+item.child("nome").getValue().toString());
+        nome.setText(item.child("nome").getValue().toString());
         data.setText("Data: "+item.child("data").getValue().toString());
         horario.setText("Horário: "+item.child("duracao").getValue().toString());
         local.setText("Local: "+item.child("campus").getValue().toString());
