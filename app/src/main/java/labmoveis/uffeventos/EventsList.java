@@ -54,6 +54,10 @@ public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
         local.setText("Local: "+item.child("campus").getValue().toString());
     }
 
+    public DataSnapshot getItem(int position){
+        return mDataset.get(position);
+    }
+
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
