@@ -48,7 +48,7 @@ public class Events extends AppCompatActivity
                 for(DataSnapshot child : dataSnapshot.getChildren()){
                         myDataset.add(child);
                 }
-                setContentView(R.layout.activity_nav_bar);
+                //setContentView(R.layout.activity_nav_bar);
                 carregaRecycleView();
             }
 
@@ -126,8 +126,18 @@ public class Events extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            Intent it;
             // Handle navigation view item clicks here.
             int id = menuItem.getItemId();
+
+            if (id == R.id.nav_eventos_interesse) {
+                it = new Intent(this, EventosInteresse.class);
+                startActivity(it);
+            } else if (id == R.id.nav_eventos_cadastrados) {
+                it = new Intent(this, EventosCadastrados.class);
+                startActivity(it);
+
+            }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);

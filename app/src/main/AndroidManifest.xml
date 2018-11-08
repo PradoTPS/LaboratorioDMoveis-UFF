@@ -22,8 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadastraEvento"></activity>
+        <activity android:name=".CadastraEvento" />
         <activity android:name=".InformacaoEvento" />
+        <activity android:name=".EventosInteresse" />
+        <activity android:name=".EventosCadastrados"></activity>
     </application>
 
 </manifest>
