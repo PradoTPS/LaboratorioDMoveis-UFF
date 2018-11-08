@@ -73,11 +73,11 @@ public class Events extends AppCompatActivity {
     public void abrirInfo(View view) {
         EventsList tempList = (EventsList) mRecyclerView.getAdapter();
 
-        CardView cdV = (CardView) getParentCardView(view);
+        View cdV = getParentCardView(view);
         System.out.println(cdV);
         int position = mRecyclerView.getChildAdapterPosition(cdV);
 
-        DataSnapshot item = tempList.getItem(1);
+        DataSnapshot item = tempList.getItem(position);
         System.out.println(item.child("nome").getValue().toString());
 
         Intent abrirInformações = new Intent(Events.this, InformacaoEvento.class);
@@ -97,7 +97,7 @@ public class Events extends AppCompatActivity {
     private View getParentCardView(View view){
         ViewParent parent = view.getParent();
 
-        if(parent instanceof CardView) return (View) parent;
+        if(((View) parent).getId() == R.id.card_view) return (View) parent;
 
         return getParentCardView((View) parent);
     }
