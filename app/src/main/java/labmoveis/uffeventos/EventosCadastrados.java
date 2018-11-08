@@ -27,33 +27,40 @@ public class EventosCadastrados extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<DataSnapshot> myDataset = new ArrayList<>();
+    private ArrayList<String> eventosIDS = new ArrayList<>();
+    private int fim = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DatabaseReference firebase = ConfiguraçãoFirebase.getFirebase();
         final String id = new LoginAtual(this).getId();
         System.out.println("ver filhos");
-        firebase.child("usuarios").child(id).child("eventos cadastrados").addValueEventListener(new ValueEventListener() {
+        ConfiguraçãoFirebase.getFirebase().child("usuarios").child(id).child("eventos cadastrados").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot child : dataSnapshot.getChildren()){
-                    String dataID = child.getKey();
+                    eventosIDS.add(child.getKey());
+                    System.out.println("filho: "+child.getKey());
+                }
+                pegaOsEventos();
+            }
 
-                    System.out.println(dataID);
-                    ConfiguraçãoFirebase.getFirebase().child("eventos").child(dataID).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                myDataset.add(snapshot);
-                            }
-                        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
+    private void pegaOsEventos() {
+        System.out.println("ver eventos");
+        ConfiguraçãoFirebase.getFirebase().child("eventos").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    System.out.println("filhos"+eventosIDS.toString());
+                    if(eventosIDS.contains(child.getKey())){
+                        myDataset.add(child);
+                    }
                 }
                 setContentView(R.layout.activity_eventos_cadastrados);
                 carregaRecycleView();
