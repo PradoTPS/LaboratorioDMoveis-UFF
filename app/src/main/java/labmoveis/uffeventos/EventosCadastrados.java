@@ -1,8 +1,9 @@
 package labmoveis.uffeventos;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,25 +19,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
+import labmoveis.uffeventos.Config.LoginAtual;
 
-public class Events extends AppCompatActivity {
+public class EventosCadastrados extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private eventItem aux = new eventItem("Apreciação da praia", "Campus Gragoatá", "descricao","responsavel", "fundo_praia.jpg", "20/10/2018","14h às 17h", "100");
     private List<DataSnapshot> myDataset = new ArrayList<>();
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DatabaseReference firebase = ConfiguraçãoFirebase.getFirebase();
-        firebase.child("eventos").addValueEventListener(new ValueEventListener() {
+        final String id = new LoginAtual(this).getId();
+        System.out.println("ver filhos");
+        firebase.child("usuarios").child(id).child("eventos cadastrados").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot child : dataSnapshot.getChildren()){
-                        myDataset.add(child);
+                    String dataID = child.getKey();
+
+                    System.out.println(dataID);
+                    ConfiguraçãoFirebase.getFirebase().child("eventos").child(dataID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                myDataset.add(snapshot);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
-                setContentView(R.layout.activity_events);
+                setContentView(R.layout.activity_eventos_cadastrados);
                 carregaRecycleView();
             }
 
@@ -44,27 +63,18 @@ public class Events extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-    }
-
-    public void cadastrarNovoEvento(View view) {
-        Intent abrirCadastroEvento = new Intent(Events.this, CadastraEvento.class);
-        startActivity(abrirCadastroEvento);
-        carregaRecycleView();
     }
 
     public void carregaRecycleView(){
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.cadastado_recycle_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
+        // definindo o layout
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
+        //colocando o adapter
         System.out.println(myDataset.size());
         mAdapter = new EventsList(myDataset);
         mRecyclerView.setAdapter(mAdapter);
@@ -80,7 +90,7 @@ public class Events extends AppCompatActivity {
         DataSnapshot item = tempList.getItem(1);
         System.out.println(item.child("nome").getValue().toString());
 
-        Intent abrirInformações = new Intent(Events.this, InformacaoEvento.class);
+        Intent abrirInformações = new Intent(EventosCadastrados.this, InformacaoEvento.class);
         abrirInformações.putExtra("NOME", item.child("nome").getValue().toString());
         abrirInformações.putExtra("DATA", item.child("data").getValue().toString());
         abrirInformações.putExtra("HORARIO", item.child("duracao").getValue().toString());
