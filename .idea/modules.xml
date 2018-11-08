@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LaboratorioDMoveis-UFF.iml" filepath="$PROJECT_DIR$/LaboratorioDMoveis-UFF.iml" />
-      <module fileurl="file://$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/smartloginlibrary-v0.5beta/LaboratorioDMoveis-UFF-smartloginlibrary-v0.5beta.iml" filepath="$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/smartloginlibrary-v0.5beta/LaboratorioDMoveis-UFF-smartloginlibrary-v0.5beta.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartloginlibrary-v0.5beta/smartloginlibrary-v0.5beta.iml" filepath="$PROJECT_DIR$/smartloginlibrary-v0.5beta/smartloginlibrary-v0.5beta.iml" />
     </modules>
   </component>
 </project>

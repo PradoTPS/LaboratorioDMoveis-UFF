@@ -2,12 +2,21 @@ package labmoveis.uffeventos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,16 +28,19 @@ import java.util.List;
 
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 
-public class Events extends AppCompatActivity {
+public class Events extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private eventItem aux = new eventItem("Apreciação da praia", "Campus Gragoatá", "descricao","responsavel", "fundo_praia.jpg", "20/10/2018","14h às 17h", "100");
     private List<DataSnapshot> myDataset = new ArrayList<>();
+    public Button btn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_nav_bar);
         DatabaseReference firebase = ConfiguraçãoFirebase.getFirebase();
         firebase.child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
@@ -44,6 +56,11 @@ public class Events extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+        btn = (Button) findViewById(R.id.nav_drawer_btn);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
 
@@ -100,5 +117,20 @@ public class Events extends AppCompatActivity {
         if(parent instanceof CardView) return (View) parent;
 
         return getParentCardView((View) parent);
+    }
+
+    public void onClickButton(View view) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.openDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            // Handle navigation view item clicks here.
+            int id = menuItem.getItemId();
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
     }
 }

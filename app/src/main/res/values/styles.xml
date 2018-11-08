@@ -15,4 +15,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="semActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="semActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
