@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +37,7 @@ public class Events extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
     private eventItem aux = new eventItem("Apreciação da praia", "Campus Gragoatá", "descricao","responsavel", "fundo_praia.jpg", "20/10/2018","14h às 17h", "100");
     private List<DataSnapshot> myDataset = new ArrayList<>();
-    public Button btn;
+    public ImageButton btn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class Events extends AppCompatActivity
             }
         });
 
-        btn = (Button) findViewById(R.id.nav_drawer_btn);
+        btn = (ImageButton) findViewById(R.id.nav_drawer_btn);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

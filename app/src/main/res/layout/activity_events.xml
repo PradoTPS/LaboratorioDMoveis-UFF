@@ -10,18 +10,6 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
-    <ImageButton
-        android:id="@+id/nav_drawer_btn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_weight="0"
-        android:adjustViewBounds="false"
-        android:clickable="true"
-        android:src="@drawable/drawer"
-        android:layout_gravity="left|top"
-        android:background="@null"
-        android:onClick="onClickButton"/>
-
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
