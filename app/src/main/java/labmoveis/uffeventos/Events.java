@@ -35,7 +35,6 @@ public class Events extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private eventItem aux = new eventItem("Apreciação da praia", "Campus Gragoatá", "descricao","responsavel", "fundo_praia.jpg", "20/10/2018","14h às 17h", "100");
     private List<DataSnapshot> myDataset = new ArrayList<>();
     public ImageButton btn;
 
@@ -131,14 +130,17 @@ public class Events extends AppCompatActivity
             // Handle navigation view item clicks here.
             int id = menuItem.getItemId();
 
-            if (id == R.id.nav_eventos_interesse) {
-                it = new Intent(this, EventosInteresse.class);
-                startActivity(it);
-            } else if (id == R.id.nav_eventos_cadastrados) {
-                it = new Intent(this, EventosCadastrados.class);
-                startActivity(it);
-
-            }
+        if (id == R.id.nav_eventos_interesse) {
+            it = new Intent(Events.this, EventosInteresse.class);
+            startActivity(it);
+            finish();
+        } else if (id == R.id.nav_eventos_cadastrados) {
+            it = new Intent(Events.this, EventosCadastrados.class);
+            startActivity(it);
+            finish();
+        } else if (id == R.id.nav_eventos) {
+            carregaRecycleView();
+        }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);

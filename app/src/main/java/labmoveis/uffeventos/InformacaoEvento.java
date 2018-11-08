@@ -76,7 +76,7 @@ public class InformacaoEvento extends AppCompatActivity {
             Toast.makeText(this, "Adicionado aos interesses", Toast.LENGTH_SHORT).show();
         }else{
             interesse = 0;
-            btn_marcaInteresse.setImageResource(R.drawable.checked);
+            btn_marcaInteresse.setImageResource(R.drawable.adicionarfavorito);
             Toast.makeText(this, "Removido dos interesses", Toast.LENGTH_SHORT).show();
         }
 

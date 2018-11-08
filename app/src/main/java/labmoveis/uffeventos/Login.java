@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
                     mensagemErro.setText(" ");
                     loginAtual.salvarLogin(usuario.getId());
                     progressBar.setVisibility(View.INVISIBLE);
-                    Intent abrirEventos = new Intent(Login.this, EventosCadastrados.class);
+                    Intent abrirEventos = new Intent(Login.this, Events.class);
                     startActivity(abrirEventos);
                     finish();
                 }else{
