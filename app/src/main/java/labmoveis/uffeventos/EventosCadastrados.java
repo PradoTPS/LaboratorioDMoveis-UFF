@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewParent;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +35,9 @@ public class EventosCadastrados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final String id = new LoginAtual(this).getId();
+
         System.out.println("ver filhos");
+        //coletando eventos criados pelo usuario
         ConfiguraçãoFirebase.getFirebase().child("usuarios").child(id).child("eventos cadastrados").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -51,7 +54,7 @@ public class EventosCadastrados extends AppCompatActivity {
         });
     }
 
-    private void pegaOsEventos() {
+    private void pegaOsEventos() { //coletando os eventos relativos aos do usuario
         System.out.println("ver eventos");
         ConfiguraçãoFirebase.getFirebase().child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,6 +78,8 @@ public class EventosCadastrados extends AppCompatActivity {
     public void carregaRecycleView(){
         mRecyclerView = (RecyclerView) findViewById(R.id.cadastado_recycle_view);
 
+
+
         mRecyclerView.setHasFixedSize(true);
 
         // definindo o layout
@@ -87,14 +92,14 @@ public class EventosCadastrados extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void abrirInfo(View view) {
+    public void abrirInfoCadastrado(View view) {
         EventsList tempList = (EventsList) mRecyclerView.getAdapter();
 
-        CardView cdV = (CardView) getParentCardView(view);
+        View cdV = getParentCardView(view);
         System.out.println(cdV);
         int position = mRecyclerView.getChildAdapterPosition(cdV);
 
-        DataSnapshot item = tempList.getItem(1);
+        DataSnapshot item = tempList.getItem(position);
         System.out.println(item.child("nome").getValue().toString());
 
         Intent abrirInformações = new Intent(EventosCadastrados.this, InformacaoEvento.class);
@@ -117,5 +122,11 @@ public class EventosCadastrados extends AppCompatActivity {
         if(parent instanceof CardView) return (View) parent;
 
         return getParentCardView((View) parent);
+    }
+
+    public void cadastrarNovoEvento(View view) {
+        Intent abrirCadastroEvento = new Intent(EventosCadastrados.this, CadastraEvento.class);
+        startActivity(abrirCadastroEvento);
+        carregaRecycleView();
     }
 }
