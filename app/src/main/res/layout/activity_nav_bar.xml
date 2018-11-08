@@ -23,13 +23,6 @@
             android:orientation="vertical"
             android:descendantFocusability="blocksDescendants">
 
-            <Button
-                android:id="@+id/nav_drawer_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onClickButton"
-                android:text="Button" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,6 +30,7 @@
                 android:textStyle="bold"
                 android:textSize="17sp"
                 android:paddingTop="10dp"
+                android:gravity="center_horizontal"
                 android:text="Olá, Aluno UFF!"/>
 
             <TextView
@@ -71,6 +65,18 @@
                 android:layout_height="match_parent"
                 android:onClick="abrirInfo"
                 android:nestedScrollingEnabled="false"/>
+
+            <ImageButton
+                android:id="@+id/nav_drawer_btn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:adjustViewBounds="false"
+                android:clickable="true"
+                android:src="@drawable/drawer"
+                android:layout_gravity="left|top"
+                android:background="@null"
+                android:onClick="onClickButton"/>
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
