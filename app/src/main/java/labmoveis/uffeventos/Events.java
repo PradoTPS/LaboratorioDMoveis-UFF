@@ -48,7 +48,7 @@ public class Events extends AppCompatActivity
                 for(DataSnapshot child : dataSnapshot.getChildren()){
                         myDataset.add(child);
                 }
-                setContentView(R.layout.activity_events);
+                setContentView(R.layout.activity_nav_bar);
                 carregaRecycleView();
             }
 
