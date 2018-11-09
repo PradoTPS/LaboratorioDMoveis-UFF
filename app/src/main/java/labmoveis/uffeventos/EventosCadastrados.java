@@ -71,7 +71,6 @@ public class EventosCadastrados extends AppCompatActivity
                         myDataset.add(child);
                     }
                 }
-                setContentView(R.layout.activity_eventos_cadastrados);
                 carregaRecycleView();
             }
 
@@ -83,8 +82,6 @@ public class EventosCadastrados extends AppCompatActivity
 
     public void carregaRecycleView(){
         mRecyclerView = (RecyclerView) findViewById(R.id.cadastado_recycle_view);
-
-
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -98,7 +95,7 @@ public class EventosCadastrados extends AppCompatActivity
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void abrirInfoCadastrado(View view) {
+    public void abrirInfoCadastrado(View view) { //TODO: implementar
         EventsList tempList = (EventsList) mRecyclerView.getAdapter();
 
         View cdV = getParentCardView(view);

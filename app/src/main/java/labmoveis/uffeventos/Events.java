@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -98,6 +99,7 @@ public class Events extends AppCompatActivity
         System.out.println(item.child("nome").getValue().toString());
 
         Intent abrirInformações = new Intent(Events.this, InformacaoEvento.class);
+        abrirInformações.putExtra("ID", item.child("id").getValue().toString());
         abrirInformações.putExtra("NOME", item.child("nome").getValue().toString());
         abrirInformações.putExtra("DATA", item.child("data").getValue().toString());
         abrirInformações.putExtra("HORARIO", item.child("duracao").getValue().toString());

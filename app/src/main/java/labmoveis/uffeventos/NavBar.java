@@ -75,13 +75,13 @@ public class NavBar extends AppCompatActivity
         if (id == R.id.nav_eventos_interesse) {
             // Handle the camera action
         } else if (id == R.id.nav_eventos_cadastrados) {
-            Intent it = new Intent(this, EventosCadastrados.class);
-            startActivity(it);
-            finish();
+//            Intent it = new Intent(this, EventosCadastrados.class);
+//            startActivity(it);
+//            finish();
         } else if(id == R.id.nav_eventos){
-            Intent it = new Intent(this, Events.class);
-            startActivity(it);
-            finish();
+//            Intent it = new Intent(this, Events.class);
+//            startActivity(it);
+//            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

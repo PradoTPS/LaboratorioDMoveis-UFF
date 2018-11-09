@@ -9,6 +9,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
+import labmoveis.uffeventos.Config.LoginAtual;
+
 public class InformacaoEvento extends AppCompatActivity {
     private FloatingActionButton btn_marcaInteresse;
 
@@ -23,15 +31,20 @@ public class InformacaoEvento extends AppCompatActivity {
     private TextView tvInvestimento;
     private TextView tvVagas;
     private TextView tvDescricao;
+    private LoginAtual loginAtual;
+    private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacao_evento);
-        btn_marcaInteresse = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        i = getIntent();
         interesse = 0;
+        loginAtual = new LoginAtual(InformacaoEvento.this);
+        btn_marcaInteresse = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        //TODO: VERIFICAR O INTERESSE NO BANCO DE DADOS
 
-        Intent i = getIntent();
+
         String nome = i.getStringExtra("NOME");
         tvNome = (TextView) findViewById(R.id.titleView);
         tvNome.setText(nome);
@@ -85,5 +98,16 @@ public class InformacaoEvento extends AppCompatActivity {
 
     public void home(View view) {
         finish();
+    }
+
+    @Override
+    protected void onDestroy() { //salva a decisão de marcar interesse ou não ao sair
+        super.onDestroy();
+        if(interesse == 1) {
+            DatabaseReference referencia = ConfiguraçãoFirebase.getFirebase();
+            referencia.child("usuarios").child(loginAtual.getId()).child("eventos interesse").child(i.getStringExtra("ID")).setValue(i.getStringExtra("NOME")); //coloca a referencia do evento no cadastro do usuario
+        }
+            //TODO: REMOVER O INTERESSE DA LISTA
+
     }
 }

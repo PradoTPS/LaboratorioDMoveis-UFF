@@ -41,22 +41,31 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        usuario = new Usuário();
+        clique = 0;
+        preferencias = new PreferenciasLogin(Login.this);
+        loginAtual = new LoginAtual(Login.this);
+        progressBar = (ProgressBar) findViewById(R.id.login_progressbar);
+        progressBar.setVisibility(View.VISIBLE);
+        if(preferencias.getEmail() != null && preferencias.getSenha() != null){
+            clique = 1;
+            usuario.setEmail(preferencias.getEmail());
+            usuario.setSenha(preferencias.getSenha());
+            AutenticarLogin();
+        }
         email = (EditText) findViewById(R.id.login_email);
         senha = (EditText) findViewById(R.id.login_senha);
         mensagemErro = (TextView) findViewById(R.id.login_mensagem_erro);
         checkbox = (CheckBox) findViewById(R.id.login_checkbox);
-        usuario = new Usuário();
-        preferencias = new PreferenciasLogin(Login.this);
-        loginAtual = new LoginAtual(Login.this);
-        email.setText(preferencias.getEmail());
-        senha.setText(preferencias.getSenha());
-        clique = 0;
-        progressBar = (ProgressBar) findViewById(R.id.login_progressbar);
-        progressBar.setVisibility(View.INVISIBLE);
+
+        if(clique!=1){
+            progressBar.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void fazerLogin(View view) {
         if(clique == 0){
+            mensagemErro.setText("");
             clique = 1;
             if(email.getText().toString().equals("") || senha.getText().toString().equals("")){
                 mensagemErro.setText("Preencha todos os campos!");
