@@ -29,4 +29,8 @@ public class LoginAtual {
     }
 
 
+    public void apagarLogin() {
+        editor.putString(chave_id, "");
+        editor.commit();
+    }
 }

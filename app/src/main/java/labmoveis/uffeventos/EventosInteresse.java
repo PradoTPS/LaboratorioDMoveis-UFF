@@ -24,6 +24,7 @@ import java.util.List;
 
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 import labmoveis.uffeventos.Config.LoginAtual;
+import labmoveis.uffeventos.Config.PreferenciasLogin;
 
 public class EventosInteresse extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,6 +60,8 @@ public class EventosInteresse extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_interesse);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void pegaOsEventos() { //coletando os eventos relativos aos do usuario
@@ -135,7 +138,7 @@ public class EventosInteresse extends AppCompatActivity
     }
 
     public void onClickButton(View view) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_interesse);
         drawer.openDrawer(GravityCompat.START);
     }
 
@@ -144,9 +147,9 @@ public class EventosInteresse extends AppCompatActivity
         Intent it;
         // Handle navigation view item clicks here.
         int id = menuItem.getItemId();
+        System.out.println("MENU");
 
         if (id == R.id.nav_eventos_interesse) {
-            Toast.makeText(this, "Interesse", Toast.LENGTH_SHORT).show();
             carregaRecycleView();
         } else if (id == R.id.nav_eventos_cadastrados) {
             it = new Intent(EventosInteresse.this, EventosCadastrados.class);
@@ -156,9 +159,15 @@ public class EventosInteresse extends AppCompatActivity
             it = new Intent(EventosInteresse.this, Events.class);
             startActivity(it);
             finish();
+        } else if(id == R.id.nav_sair){
+            new LoginAtual(this).apagarLogin();
+            new PreferenciasLogin(this).apagarPreferencia();
+            it = new Intent(EventosInteresse.this, Login.class);
+            startActivity(it);
+            finish();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_interesse);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -33,4 +33,10 @@ public class PreferenciasLogin {
     public String getSenha(){
         return preferences.getString(chave_senha, null);
     }
+
+    public void apagarPreferencia() {
+        editor.putString(chave_email, null);
+        editor.putString(chave_senha, null);
+        editor.commit();
+    }
 }

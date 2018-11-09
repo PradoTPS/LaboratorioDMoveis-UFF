@@ -25,6 +25,7 @@ import java.util.List;
 
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 import labmoveis.uffeventos.Config.LoginAtual;
+import labmoveis.uffeventos.Config.PreferenciasLogin;
 
 public class EventosCadastrados extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -58,6 +59,9 @@ public class EventosCadastrados extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_cadastrado);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void pegaOsEventos() { //coletando os eventos relativos aos do usuario
@@ -135,7 +139,7 @@ public class EventosCadastrados extends AppCompatActivity
 
 
     public void onClickButton(View view) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_cadastrados);
         drawer.openDrawer(GravityCompat.START);
     }
 
@@ -155,9 +159,15 @@ public class EventosCadastrados extends AppCompatActivity
             it = new Intent(EventosCadastrados.this, Events.class);
             startActivity(it);
             finish();
+        } else if(id == R.id.nav_sair){
+            new LoginAtual(this).apagarLogin();
+            new PreferenciasLogin(this).apagarPreferencia();
+            it = new Intent(EventosCadastrados.this, Login.class);
+            startActivity(it);
+            finish();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_cadastrados);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

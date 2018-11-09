@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
+import labmoveis.uffeventos.Config.LoginAtual;
+import labmoveis.uffeventos.Config.PreferenciasLogin;
 
 public class Events extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -142,6 +144,12 @@ public class Events extends AppCompatActivity
             finish();
         } else if (id == R.id.nav_eventos) {
             carregaRecycleView();
+        } else if(id == R.id.nav_sair){
+            new LoginAtual(this).apagarLogin();
+            new PreferenciasLogin(this).apagarPreferencia();
+            it = new Intent(Events.this, Login.class);
+            startActivity(it);
+            finish();
         }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

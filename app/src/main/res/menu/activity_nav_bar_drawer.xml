@@ -8,6 +8,10 @@
             android:id="@+id/nav_alterar_cadastro"
             android:icon="@drawable/informacoes"
             android:title="Informações" />
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/sair"
+            android:title="Sair" />
     </group>
 
     <item android:title="Eventos">
@@ -26,5 +30,6 @@
                 android:title="Todos os eventos" />
         </menu>
     </item>
+
 
 </menu>

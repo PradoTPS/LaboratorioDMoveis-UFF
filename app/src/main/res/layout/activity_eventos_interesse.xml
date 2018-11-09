@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".EventosInteresse"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/drawer_layout_interesse"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -91,7 +91,7 @@
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/nav_view_interesse"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
