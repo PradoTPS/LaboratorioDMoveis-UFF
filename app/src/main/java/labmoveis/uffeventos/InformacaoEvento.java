@@ -21,7 +21,9 @@ public class InformacaoEvento extends AppCompatActivity {
     private FloatingActionButton btn_marcaInteresse;
 
     private int interesse;
-
+    private int salvoBanco;
+    private String userId;
+    private String id;
     private TextView tvNome;
     private TextView tvData;
     private TextView tvHorario;
@@ -39,11 +41,31 @@ public class InformacaoEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacao_evento);
         i = getIntent();
-        interesse = 0;
-        loginAtual = new LoginAtual(InformacaoEvento.this);
-        btn_marcaInteresse = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        //TODO: VERIFICAR O INTERESSE NO BANCO DE DADOS
 
+        userId = new LoginAtual(this).getId();
+        id = i.getStringExtra("ID");
+        btn_marcaInteresse = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        interesse = 0;
+        salvoBanco = 0;
+        btn_marcaInteresse.setImageResource(R.drawable.adicionarfavorito);
+
+        ConfiguraçãoFirebase.getFirebase().child("usuarios").child(userId).child("eventos interesse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    if(id.equals(child.getKey())){
+                        interesse = 1;
+                        salvoBanco = 1;
+                        btn_marcaInteresse.setImageResource(R.drawable.clear);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+
+        loginAtual = new LoginAtual(InformacaoEvento.this);
 
         String nome = i.getStringExtra("NOME");
         tvNome = (TextView) findViewById(R.id.titleView);
@@ -103,11 +125,12 @@ public class InformacaoEvento extends AppCompatActivity {
     @Override
     protected void onDestroy() { //salva a decisão de marcar interesse ou não ao sair
         super.onDestroy();
-        if(interesse == 1) {
-            DatabaseReference referencia = ConfiguraçãoFirebase.getFirebase();
-            referencia.child("usuarios").child(loginAtual.getId()).child("eventos interesse").child(i.getStringExtra("ID")).setValue(i.getStringExtra("NOME")); //coloca a referencia do evento no cadastro do usuario
-        }
-            //TODO: REMOVER O INTERESSE DA LISTA
 
+        DatabaseReference referencia = ConfiguraçãoFirebase.getFirebase();
+        if(interesse == 1) {
+            referencia.child("usuarios").child(userId).child("eventos interesse").child(id).setValue(i.getStringExtra("NOME")); //coloca a referencia do evento no cadastro do usuario
+        } else if(interesse == 0 && salvoBanco == 1){
+            referencia.child("usuarios").child(userId).child("eventos interesse").child(id).removeValue();
+        }
     }
 }

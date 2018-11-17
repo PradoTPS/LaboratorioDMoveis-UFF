@@ -7,9 +7,9 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/smartloginlibrary-v0.5beta" />
+            <option value="$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF" />
+            <option value="$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/app" />
+            <option value="$USER_HOME$/Área de Trabalho/LaboratorioDMoveis-UFF/smartloginlibrary-v0.5beta" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
