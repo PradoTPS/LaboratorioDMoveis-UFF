@@ -25,8 +25,7 @@
                     android:id="@+id/imagem_evento"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/fundo_praia" />
+                    android:scaleType="centerCrop" />
 
                 <TextView
                     android:id="@+id/nome"

@@ -1,18 +1,24 @@
 package labmoveis.uffeventos;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 import labmoveis.uffeventos.Config.LoginAtual;
@@ -35,12 +41,16 @@ public class InformacaoEvento extends AppCompatActivity {
     private TextView tvDescricao;
     private LoginAtual loginAtual;
     private Intent i;
+    private Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacao_evento);
         i = getIntent();
+        ctx = this;
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference().child("ImagensEventos");
 
         userId = new LoginAtual(this).getId();
         id = i.getStringExtra("ID");
@@ -102,6 +112,19 @@ public class InformacaoEvento extends AppCompatActivity {
         String descricao = i.getStringExtra("DESCRICAO");
         tvDescricao = (TextView) findViewById(R.id.descriptionView);
         tvDescricao.setText(descricao);
+
+        storageRef.child(i.getStringExtra("IMAGEM")).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                System.out.println("URI: "+uri);
+
+                Glide.with(ctx)
+                        .load(uri)
+                        .into((ImageView) findViewById(R.id.imageView));
+            }
+        });
+
+
     }
 
     public void marcaInteresse(View view) {

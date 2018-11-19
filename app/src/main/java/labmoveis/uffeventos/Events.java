@@ -3,22 +3,16 @@ package labmoveis.uffeventos;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,6 +38,7 @@ public class Events extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
+
         DatabaseReference firebase = ConfiguraçãoFirebase.getFirebase();
         firebase.child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
@@ -52,9 +47,9 @@ public class Events extends AppCompatActivity
                         myDataset.add(child);
                 }
                 //setContentView(R.layout.activity_nav_bar);
+
                 carregaRecycleView();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -74,6 +69,7 @@ public class Events extends AppCompatActivity
     }
 
     public void carregaRecycleView(){
+
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -91,6 +87,7 @@ public class Events extends AppCompatActivity
     }
 
     public void abrirInfo(View view) {
+
         EventsList tempList = (EventsList) mRecyclerView.getAdapter();
 
         View cdV = getParentCardView(view);
@@ -98,7 +95,7 @@ public class Events extends AppCompatActivity
         int position = mRecyclerView.getChildAdapterPosition(cdV);
 
         DataSnapshot item = tempList.getItem(position);
-        System.out.println(item.child("nome").getValue().toString());
+
 
         Intent abrirInformações = new Intent(Events.this, InformacaoEvento.class);
         abrirInformações.putExtra("ID", item.child("id").getValue().toString());
@@ -111,6 +108,7 @@ public class Events extends AppCompatActivity
         abrirInformações.putExtra("INVESTIMENTO", item.child("investimento").getValue().toString());
         abrirInformações.putExtra("VAGAS", item.child("vagas").getValue().toString());
         abrirInformações.putExtra("DESCRICAO", item.child("descricao").getValue().toString());
+        abrirInformações.putExtra("IMAGEM", item.child("codImagem").getValue().toString());
 
         startActivity(abrirInformações);
     }
