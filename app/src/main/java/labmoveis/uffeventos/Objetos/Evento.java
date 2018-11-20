@@ -22,6 +22,7 @@ public class Evento {
     private String publico;
     private String investimento;
     private String codImagem;
+    private String uri;
 
     public Evento() {
     }
@@ -48,6 +49,7 @@ public class Evento {
         hashmapEvento.put("publico", getPublico());
         hashmapEvento.put("investimento", getInvestimento());
         hashmapEvento.put("codigoImagem", getCodImagem());
+        hashmapEvento.put("uri", getUri());
         return hashmapEvento;
     }
 
@@ -61,6 +63,13 @@ public class Evento {
 
     public String getCodImagem() {
         return codImagem;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public void setCodImagem(String codImagem) {

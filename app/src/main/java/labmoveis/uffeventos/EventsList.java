@@ -16,7 +16,6 @@ import com.bumptech.glide.Registry;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
@@ -93,17 +92,10 @@ public class EventsList extends RecyclerView.Adapter<EventsList.MyViewHolder> {
 
         System.out.println("\n\n\n\n"+item.getKey().toString());
 
-        storageRef.child(item.child("codImagem").getValue().toString()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                System.out.println("URI: "+uri);
-
-                Glide.with(holder.mCardView.getContext())
-                        .load(uri)
-                        .into((ImageView) holder.mCardView.findViewById(R.id.imagem_evento));
-            }
-        });
-    }
+        Glide.with(holder.mCardView.getContext())
+                .load(item.child("uri").getValue().toString())
+                .into((ImageView) holder.mCardView.findViewById(R.id.imagem_evento));
+        }
 
     public DataSnapshot getItem(int position){
         return mDataset.get(position);

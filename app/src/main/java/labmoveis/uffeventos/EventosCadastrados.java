@@ -1,23 +1,20 @@
 package labmoveis.uffeventos;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -41,16 +38,14 @@ public class EventosCadastrados extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final String id = new LoginAtual(this).getId();
-        setContentView(R.layout.activity_eventos_cadastrados);
+        setContentView(R.layout.activity_nav_bar);
 
-        System.out.println("ver filhos");
         //coletando eventos criados pelo usuario
         ConfiguraçãoFirebase.getFirebase().child("usuarios").child(id).child("eventos cadastrados").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot child : dataSnapshot.getChildren()){
                     eventosIDS.add(child.getKey());
-                    System.out.println("filho: "+child.getKey());
                 }
                 pegaOsEventos();
             }
@@ -60,17 +55,15 @@ public class EventosCadastrados extends AppCompatActivity
             }
         });
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_cadastrado);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void pegaOsEventos() { //coletando os eventos relativos aos do usuario
-        System.out.println("ver eventos");
         ConfiguraçãoFirebase.getFirebase().child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot child : dataSnapshot.getChildren()){
-                    System.out.println("filhos"+eventosIDS.toString());
                     if(eventosIDS.contains(child.getKey())){
                         myDataset.add(child);
                     }
@@ -85,7 +78,7 @@ public class EventosCadastrados extends AppCompatActivity
     }
 
     public void carregaRecycleView(){
-        mRecyclerView = (RecyclerView) findViewById(R.id.cadastado_recycle_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -94,22 +87,21 @@ public class EventosCadastrados extends AppCompatActivity
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //colocando o adapter
-        System.out.println(myDataset.size());
         mAdapter = new EventsList(myDataset);
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void abrirInfoCadastrado(View view) { //TODO: implementar
+    public void abrirInfo(View view) { //TODO: implementar
         EventsList tempList = (EventsList) mRecyclerView.getAdapter();
 
         View cdV = getParentCardView(view);
-        System.out.println(cdV);
         int position = mRecyclerView.getChildAdapterPosition(cdV);
 
         DataSnapshot item = tempList.getItem(position);
-        System.out.println(item.child("nome").getValue().toString());
 
         Intent abrirInformações = new Intent(EventosCadastrados.this, InformacaoEvento.class);
+        abrirInformações.putExtra("KEY", item.getKey());
+        abrirInformações.putExtra("ID", item.child("id").getValue().toString());
         abrirInformações.putExtra("NOME", item.child("nome").getValue().toString());
         abrirInformações.putExtra("DATA", item.child("data").getValue().toString());
         abrirInformações.putExtra("HORARIO", item.child("duracao").getValue().toString());
@@ -119,6 +111,10 @@ public class EventosCadastrados extends AppCompatActivity
         abrirInformações.putExtra("INVESTIMENTO", item.child("investimento").getValue().toString());
         abrirInformações.putExtra("VAGAS", item.child("vagas").getValue().toString());
         abrirInformações.putExtra("DESCRICAO", item.child("descricao").getValue().toString());
+        abrirInformações.putExtra("IMAGEM", item.child("codImagem").getValue().toString());
+        abrirInformações.putExtra("URI", item.child("uri").getValue().toString());
+        abrirInformações.putExtra("INTERESSE", false);
+
 
         startActivity(abrirInformações);
     }
@@ -126,7 +122,7 @@ public class EventosCadastrados extends AppCompatActivity
     private View getParentCardView(View view){
         ViewParent parent = view.getParent();
 
-        if(parent instanceof CardView) return (View) parent;
+        if(((View) parent).getId() == R.id.card_view) return (View) parent;
 
         return getParentCardView((View) parent);
     }
@@ -139,7 +135,7 @@ public class EventosCadastrados extends AppCompatActivity
 
 
     public void onClickButton(View view) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_cadastrados);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.openDrawer(GravityCompat.START);
     }
 
@@ -167,7 +163,7 @@ public class EventosCadastrados extends AppCompatActivity
             finish();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_cadastrados);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

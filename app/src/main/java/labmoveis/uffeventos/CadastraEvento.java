@@ -1,14 +1,11 @@
 package labmoveis.uffeventos;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -23,9 +20,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.MonthDay;
-import java.util.Calendar;
 import java.util.Date;
 
 import labmoveis.uffeventos.Config.Base64Custom;
@@ -152,7 +146,12 @@ public class CadastraEvento extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) { //verifica se foi corretamente
                         mensagemErro.setText(" ");
                         Toast.makeText(CadastraEvento.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                        cadastrarEvento();
+                        taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                cadastrarEvento(uri);
+                            }
+                        });
                         progressBar.setVisibility(View.INVISIBLE);
                         finish();
                     }
@@ -165,7 +164,7 @@ public class CadastraEvento extends AppCompatActivity {
 
     }
 
-    private void cadastrarEvento() { //cria um evento e o cadastra no BD
+    private void cadastrarEvento(Uri uri) { //cria um evento e o cadastra no BD
         Evento evento = new Evento();
         evento.setNome(nome.getText().toString());
         evento.setCampus(campus.getText().toString());
@@ -177,6 +176,7 @@ public class CadastraEvento extends AppCompatActivity {
         evento.setVagas(vagas.getText().toString());
         evento.setResponsavel(resposnavel.getText().toString());
         evento.setCodImagem(cod_imagem);
+        evento.setUri(uri.toString());
         evento.setPublico(publico.getText().toString());
         evento.setId();
 

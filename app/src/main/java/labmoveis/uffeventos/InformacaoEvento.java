@@ -2,8 +2,8 @@ package labmoveis.uffeventos;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +25,7 @@ import labmoveis.uffeventos.Config.LoginAtual;
 public class InformacaoEvento extends AppCompatActivity {
     private FloatingActionButton btn_marcaInteresse;
 
-    private int interesse;
+    private boolean interesse;
     private int salvoBanco;
     private String userId;
     private String id;
@@ -55,25 +54,33 @@ public class InformacaoEvento extends AppCompatActivity {
         userId = new LoginAtual(this).getId();
         id = i.getStringExtra("ID");
         btn_marcaInteresse = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        interesse = 0;
         salvoBanco = 0;
         btn_marcaInteresse.setImageResource(R.drawable.adicionarfavorito);
 
-        ConfiguraçãoFirebase.getFirebase().child("usuarios").child(userId).child("eventos interesse").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot child : dataSnapshot.getChildren()){
-                    if(id.equals(child.getKey())){
-                        interesse = 1;
-                        salvoBanco = 1;
-                        btn_marcaInteresse.setImageResource(R.drawable.clear);
+        interesse  = i.getBooleanExtra("INTERESSE", false);
+        if(interesse){
+            salvoBanco = 1;
+            btn_marcaInteresse.setImageResource(R.drawable.clear);
+        }else{
+            System.out.println(i.getStringExtra("KEY"));
+            ConfiguraçãoFirebase.getFirebase().child("usuarios").child(userId).child("eventos interesse").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot child : dataSnapshot.getChildren()){
+                        if(child.getKey().equals(i.getStringExtra("KEY"))){
+                            interesse = true;
+                            salvoBanco = 1;
+                            btn_marcaInteresse.setImageResource(R.drawable.clear);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+
+        }
 
         loginAtual = new LoginAtual(InformacaoEvento.this);
 
@@ -113,32 +120,24 @@ public class InformacaoEvento extends AppCompatActivity {
         tvDescricao = (TextView) findViewById(R.id.descriptionView);
         tvDescricao.setText(descricao);
 
-        storageRef.child(i.getStringExtra("IMAGEM")).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                System.out.println("URI: "+uri);
-
-                Glide.with(ctx)
-                        .load(uri)
-                        .into((ImageView) findViewById(R.id.imageView));
-            }
-        });
-
-
+        Glide.with(ctx)
+                .load(i.getStringExtra("URI"))
+                .into((ImageView) findViewById(R.id.imageView));
     }
 
     public void marcaInteresse(View view) {
-        if(interesse == 0){
-            interesse = 1;
+        DatabaseReference referencia = ConfiguraçãoFirebase.getFirebase();
+        if(!interesse){
+            interesse = true;
             btn_marcaInteresse.setImageResource(R.drawable.clear);
+            referencia.child("usuarios").child(userId).child("eventos interesse").child(i.getStringExtra("KEY")).setValue(i.getStringExtra("NOME")); //coloca a referencia do evento no cadastro do usuario
             Toast.makeText(this, "Adicionado aos interesses", Toast.LENGTH_SHORT).show();
         }else{
-            interesse = 0;
+            interesse = false;
             btn_marcaInteresse.setImageResource(R.drawable.adicionarfavorito);
+            referencia.child("usuarios").child(userId).child("eventos interesse").child(i.getStringExtra("KEY")).removeValue();
             Toast.makeText(this, "Removido dos interesses", Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     public void home(View view) {
@@ -148,12 +147,5 @@ public class InformacaoEvento extends AppCompatActivity {
     @Override
     protected void onDestroy() { //salva a decisão de marcar interesse ou não ao sair
         super.onDestroy();
-
-        DatabaseReference referencia = ConfiguraçãoFirebase.getFirebase();
-        if(interesse == 1) {
-            referencia.child("usuarios").child(userId).child("eventos interesse").child(id).setValue(i.getStringExtra("NOME")); //coloca a referencia do evento no cadastro do usuario
-        } else if(interesse == 0 && salvoBanco == 1){
-            referencia.child("usuarios").child(userId).child("eventos interesse").child(id).removeValue();
-        }
     }
 }

@@ -47,7 +47,6 @@ public class Events extends AppCompatActivity
                         myDataset.add(child);
                 }
                 //setContentView(R.layout.activity_nav_bar);
-
                 carregaRecycleView();
             }
             @Override
@@ -81,7 +80,6 @@ public class Events extends AppCompatActivity
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        System.out.println(myDataset.size());
         mAdapter = new EventsList(myDataset);
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -98,6 +96,7 @@ public class Events extends AppCompatActivity
 
 
         Intent abrirInformações = new Intent(Events.this, InformacaoEvento.class);
+        abrirInformações.putExtra("KEY", item.getKey());
         abrirInformações.putExtra("ID", item.child("id").getValue().toString());
         abrirInformações.putExtra("NOME", item.child("nome").getValue().toString());
         abrirInformações.putExtra("DATA", item.child("data").getValue().toString());
@@ -109,6 +108,8 @@ public class Events extends AppCompatActivity
         abrirInformações.putExtra("VAGAS", item.child("vagas").getValue().toString());
         abrirInformações.putExtra("DESCRICAO", item.child("descricao").getValue().toString());
         abrirInformações.putExtra("IMAGEM", item.child("codImagem").getValue().toString());
+        abrirInformações.putExtra("URI", item.child("uri").getValue().toString());
+        abrirInformações.putExtra("INTERESSE", false);
 
         startActivity(abrirInformações);
     }
