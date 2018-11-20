@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,18 +40,39 @@ public class EventosInteresse extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
     private List<DataSnapshot> myDataset = new ArrayList<>();
     private ArrayList<String> eventosIDS = new ArrayList<>();
+    private String id;
+
     private AlertDialog carregando;
     private ProgressBar progressBar;
+    private SwipeRefreshLayout pullToRefresh;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final String id = new LoginAtual(this).getId();
+        id = new LoginAtual(this).getId();
         setContentView(R.layout.activity_nav_bar);
 
         criaCarregando();
+        ((TextView) findViewById(R.id.textoEventos)).setText("Estes são os eventos que você tem interesse!");
 
+        pullToRefresh = findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                pullToRefresh.setRefreshing(true);
+                refreshData(); // your code
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
+        populaRecyclerView();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void populaRecyclerView() {
         //coletando eventos criados pelo usuario
         ConfiguraçãoFirebase.getFirebase().child("usuarios").child(id).child("eventos interesse").addValueEventListener(new ValueEventListener() {
             @Override
@@ -63,8 +87,15 @@ public class EventosInteresse extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void refreshData() {
+        myDataset.clear();
+        eventosIDS.clear();
+        mAdapter.notifyDataSetChanged();
+        populaRecyclerView();
+        Toast.makeText(this, "Atualizado", Toast.LENGTH_SHORT).show();
+
     }
 
     private void pegaOsEventos() { //coletando os eventos relativos aos do usuario
@@ -129,8 +160,14 @@ public class EventosInteresse extends AppCompatActivity
         abrirInformações.putExtra("INTERESSE", false);
 
 
-        startActivity(abrirInformações);
+        startActivityForResult(abrirInformações, 1);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        refreshData();
+    }
+
 
     private View getParentCardView(View view){
 

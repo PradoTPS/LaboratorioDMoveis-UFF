@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewParent;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,18 +42,41 @@ public class Events extends AppCompatActivity
     private AlertDialog carregando;
     private ProgressBar progressBar;
 
+    private SwipeRefreshLayout pullToRefresh;
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
-        criaCarregando();
+        criaCarregando(); //cria a tela de carregamento
+
+        pullToRefresh = findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                pullToRefresh.setRefreshing(true);
+                refreshData(); // your code
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
+        populaRecyclerView(); //chama a criação dos cards da list
+
+        btn = (ImageButton) findViewById(R.id.nav_drawer_btn);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    private void populaRecyclerView() {
         DatabaseReference firebase = ConfiguraçãoFirebase.getFirebase();
         firebase.child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot child : dataSnapshot.getChildren()){
-                        myDataset.add(child);
+                    myDataset.add(child);
                 }
                 //setContentView(R.layout.activity_nav_bar);
                 carregaRecycleView();
@@ -60,12 +85,13 @@ public class Events extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
 
-        btn = (ImageButton) findViewById(R.id.nav_drawer_btn);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+    private void refreshData() {
+        myDataset.clear();
+        mAdapter.notifyDataSetChanged();
+        populaRecyclerView();
+        Toast.makeText(this, "Atualizado", Toast.LENGTH_SHORT).show();
     }
 
     public void cadastrarNovoEvento(View view) {
@@ -89,6 +115,8 @@ public class Events extends AppCompatActivity
         // specify an adapter (see also next example)
         mAdapter = new EventsList(myDataset);
         mRecyclerView.setAdapter(mAdapter);
+
+
         apagaCarregando();
 
     }
@@ -120,8 +148,14 @@ public class Events extends AppCompatActivity
         abrirInformações.putExtra("URI", item.child("uri").getValue().toString());
         abrirInformações.putExtra("INTERESSE", false);
 
-        startActivity(abrirInformações);
+        startActivityForResult(abrirInformações, 1);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        refreshData();
+    }
+
 
     private View getParentCardView(View view){
         ViewParent parent = view.getParent();

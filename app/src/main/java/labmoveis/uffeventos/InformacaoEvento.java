@@ -1,5 +1,6 @@
 package labmoveis.uffeventos;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -141,11 +142,15 @@ public class InformacaoEvento extends AppCompatActivity {
     }
 
     public void home(View view) {
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }
 
     @Override
     protected void onDestroy() { //salva a decisão de marcar interesse ou não ao sair
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_OK, returnIntent);
         super.onDestroy();
     }
 }

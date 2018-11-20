@@ -10,86 +10,93 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <RelativeLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:descendantFocusability="blocksDescendants">
+                android:overScrollMode="never">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="45dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/botaoLogin"
-                        android:textStyle="bold"
-                        android:textSize="17sp"
-                        android:paddingTop="10dp"
-                        android:text="Olá, Aluno UFF!"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Descubra novos eventos hoje!"
-                        android:textStyle="bold"
-                        android:paddingBottom="14sp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingBottom="10dp">
-
-                    <Button
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:text="+"
-                        android:textAlignment="center"
-                        android:gravity="center"
-                        android:textSize="20dp"
-                        android:fontFamily="@string/common_google_play_services_enable_button"
-                        android:onClick="cadastrarNovoEvento"
-                        android:background="@drawable/botao_add"/>
-                </LinearLayout>
-
-                <!-- A RecyclerView with some commonly used attributes -->
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/my_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="abrirInfo"
-                    android:nestedScrollingEnabled="false"/>
+                    android:orientation="vertical"
+                    android:descendantFocusability="blocksDescendants">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="45dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/botaoLogin"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:paddingTop="10dp"
+                            android:text="Olá, Aluno UFF!"/>
 
-        </android.support.v4.widget.NestedScrollView>
+                        <TextView
+                            android:id="@+id/textoEventos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Descubra novos eventos hoje!"
+                            android:textStyle="bold"
+                            android:paddingBottom="14sp"/>
+                    </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/nav_drawer_btn"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_weight="0"
-            android:adjustViewBounds="false"
-            android:clickable="true"
-            android:src="@drawable/drawer"
-            android:layout_gravity="left|top"
-            android:background="@null"
-            android:onClick="onClickButton"/>
-    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="10dp">
+
+                        <Button
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:text="+"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:textSize="20dp"
+                            android:fontFamily="@string/common_google_play_services_enable_button"
+                            android:onClick="cadastrarNovoEvento"
+                            android:background="@drawable/botao_add"/>
+                    </LinearLayout>
+
+                    <!-- A RecyclerView with some commonly used attributes -->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/my_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:onClick="abrirInfo"
+                        android:nestedScrollingEnabled="false"/>
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <ImageButton
+                android:id="@+id/nav_drawer_btn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:adjustViewBounds="false"
+                android:clickable="true"
+                android:src="@drawable/drawer"
+                android:layout_gravity="left|top"
+                android:background="@null"
+                android:onClick="onClickButton"/>
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
