@@ -6,12 +6,15 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +36,9 @@ public class EventosCadastrados extends AppCompatActivity
     private List<DataSnapshot> myDataset = new ArrayList<>();
     private ArrayList<String> eventosIDS = new ArrayList<>();
     private int fim = 0;
+    private AlertDialog carregando;
+    private ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,7 @@ public class EventosCadastrados extends AppCompatActivity
         final String id = new LoginAtual(this).getId();
         setContentView(R.layout.activity_nav_bar);
 
+        criaCarregando();
         //coletando eventos criados pelo usuario
         ConfiguraçãoFirebase.getFirebase().child("usuarios").child(id).child("eventos cadastrados").addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,9 +96,11 @@ public class EventosCadastrados extends AppCompatActivity
         //colocando o adapter
         mAdapter = new EventsList(myDataset);
         mRecyclerView.setAdapter(mAdapter);
+
+        apagaCarregando();
     }
 
-    public void abrirInfo(View view) { //TODO: implementar
+    public void abrirInfo(View view) {
         EventsList tempList = (EventsList) mRecyclerView.getAdapter();
 
         View cdV = getParentCardView(view);
@@ -166,5 +175,33 @@ public class EventosCadastrados extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void criaCarregando() { //Cria a tela de carregamento
+        //Cria o gerador do AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //define o titulo
+        builder.setTitle("Carregando eventos");
+        //cria e instancia o inflater
+        LayoutInflater li = getLayoutInflater();
+        //inflamos o layout carregando.xml na view
+        View view = li.inflate(R.layout.carregando, null);
+
+        //associando a view ao carregando
+        builder.setView(view);
+        //criando o carregando com o builder
+        carregando = builder.create();
+
+        //instanciando o progressBar
+        progressBar = (ProgressBar) view.findViewById(R.id.carregando_progressbar);
+        //iniciando o progressBar
+        progressBar.setVisibility(View.VISIBLE);
+        //Exibe
+        carregando.show();
+    }
+
+    private void apagaCarregando(){
+        progressBar.setVisibility(View.INVISIBLE);
+        carregando.dismiss();
     }
 }
