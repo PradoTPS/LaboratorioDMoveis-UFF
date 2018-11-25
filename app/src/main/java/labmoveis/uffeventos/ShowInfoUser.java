@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -30,7 +31,6 @@ public class ShowInfoUser extends AppCompatActivity {
 
     Usuário usuario;
 
-    String teste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,34 +47,38 @@ public class ShowInfoUser extends AppCompatActivity {
         LoginAtual loginAtual = new LoginAtual(this);
         String id = loginAtual.getId();
 
-        //ConfiguraçãoFirebase.getAutenticacao();
-        //DatabaseReference db = ConfiguraçãoFirebase.getFirebase();
         DatabaseReference db = ConfiguraçãoFirebase.getFirebase();
-        Query userAtual = db.child("usuarios").orderByValue().equalTo(id);
+        Query userAtual = db.child("usuarios").child(id);
         userAtual.addValueEventListener(new ValueEventListener() {
-        //ConfiguraçãoFirebase.getFirebase().child("usuarios").child(id).child("nome").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //teste = dataSnapshot.child("nome").getValue(String.class);
-                for (DataSnapshot item: dataSnapshot.getChildren()) {
-                    teste = item.child("nome").getValue().toString();
-                }
+                String nome = dataSnapshot.child("nome").getValue().toString();
+                String campus = dataSnapshot.child("campus").getValue().toString();
+                String email = dataSnapshot.child("email").getValue().toString();
+                String senha = dataSnapshot.child("senha").getValue().toString();
+                nome_value.setText(nome);
+                campus_value.setText(campus);
+                email_value.setText(email);
+
+                salvaUser(nome, campus, email, senha);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
-
-        //usuario = new Usuário();
-        //usuario.getUsuárioFireBase(this);
-        nome_value.setText(teste);
-
     }
 
     public void EditarInfos(View view) {
         Intent it = new Intent(ShowInfoUser.this, EditUserInfo.class);
         startActivity(it);
+    }
+
+    public void salvaUser(String nm, String cmps, String email, String pssd) {
+        this.usuario = new Usuário();
+        this.usuario.setNome(nm);
+        this.usuario.setCampus(cmps);
+        this.usuario.setEmail(email);
+        this.usuario.setSenha(pssd);
+        Log.i("lucas", usuario.getNome());
     }
 }
