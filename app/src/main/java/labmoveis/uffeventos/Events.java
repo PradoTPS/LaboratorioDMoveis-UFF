@@ -172,11 +172,14 @@ public class Events extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            Intent it;
-            // Handle navigation view item clicks here.
-            int id = menuItem.getItemId();
+        Intent it;
+        // Handle navigation view item clicks here.
+        int id = menuItem.getItemId();
 
-        if (id == R.id.nav_eventos_interesse) {
+        if (id == R.id.nav_alterar_cadastro) {
+            it = new Intent(Events.this, ShowInfoUser.class);
+            startActivity(it);
+        } else if (id == R.id.nav_eventos_interesse) {
             it = new Intent(Events.this, EventosInteresse.class);
             startActivity(it);
             finish();

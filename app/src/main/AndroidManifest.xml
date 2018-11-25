@@ -25,7 +25,9 @@
         <activity android:name=".CadastraEvento" />
         <activity android:name=".InformacaoEvento" />
         <activity android:name=".EventosInteresse" />
-        <activity android:name=".EventosCadastrados"></activity>
+        <activity android:name=".EventosCadastrados" />
+        <activity android:name=".ShowInfoUser" />
+        <activity android:name=".EditUserInfo"></activity>
     </application>
 
 </manifest>
