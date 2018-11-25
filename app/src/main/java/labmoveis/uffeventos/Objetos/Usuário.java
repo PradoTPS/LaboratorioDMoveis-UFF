@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.Query;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +16,7 @@ import labmoveis.uffeventos.Config.Base64Custom;
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 import labmoveis.uffeventos.Config.LoginAtual;
 
-public class Usuário {
+public class Usuário implements Serializable {
 
     private String nome;
     private String campus;
@@ -26,17 +27,6 @@ public class Usuário {
     private String id;
 
     public Usuário() {
-    }
-
-    public void getUsuárioFireBase(Context context) {
-        ConfiguraçãoFirebase.getAutenticacao();
-        LoginAtual loginAtual = new LoginAtual(context);
-        String id = loginAtual.getId();
-        Query userAtual = ConfiguraçãoFirebase.getFirebase().child("usuarios").orderByChild("id").equalTo(id);
-        setNome(userAtual.getRef().child("Nome").toString());
-        setCampus(userAtual.getRef().child("Campus").toString());
-        setEmail(userAtual.getRef().child("Email").toString());
-        setSenha(userAtual.getRef().child("Senha").toString());
     }
 
     public void salvar(){ //coloca o hashmap do usuário como um filho de usuarios no BD
@@ -58,6 +48,8 @@ public class Usuário {
 
 
     public String getId() { return id; }
+
+    public void setId(String v) {this.id = v;}
 
     public String getNome() {
         return nome;

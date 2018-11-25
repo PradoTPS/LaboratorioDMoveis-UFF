@@ -62,6 +62,7 @@
                     android:layout_weight="2">
 
                     <EditText
+                        android:id="@+id/edit_nome_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nome"
@@ -74,6 +75,7 @@
                     android:layout_weight="2">
 
                     <EditText
+                        android:id="@+id/edit_campus_id"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:maxLength="400"
@@ -87,6 +89,7 @@
                     android:layout_weight="2">
 
                     <EditText
+                        android:id="@+id/edit_email_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
@@ -99,6 +102,7 @@
                     android:layout_weight="2">
 
                     <EditText
+                        android:id="@+id/edit_senha_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Senha"
@@ -111,6 +115,7 @@
                     android:layout_weight="2">
 
                     <EditText
+                        android:id="@+id/edit_confirmaSenha_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Confirme a senha"

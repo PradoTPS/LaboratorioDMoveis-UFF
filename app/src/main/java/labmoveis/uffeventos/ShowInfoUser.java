@@ -45,7 +45,7 @@ public class ShowInfoUser extends AppCompatActivity {
         email_value = findViewById(R.id.email_user_id);
 
         LoginAtual loginAtual = new LoginAtual(this);
-        String id = loginAtual.getId();
+        final String id = loginAtual.getId();
 
         DatabaseReference db = ConfiguraçãoFirebase.getFirebase();
         Query userAtual = db.child("usuarios").child(id);
@@ -60,7 +60,7 @@ public class ShowInfoUser extends AppCompatActivity {
                 campus_value.setText(campus);
                 email_value.setText(email);
 
-                salvaUser(nome, campus, email, senha);
+                salvaUser(id, nome, campus, email, senha);
             }
 
             @Override
@@ -70,11 +70,13 @@ public class ShowInfoUser extends AppCompatActivity {
 
     public void EditarInfos(View view) {
         Intent it = new Intent(ShowInfoUser.this, EditUserInfo.class);
+        it.putExtra("usuario", this.usuario);
         startActivity(it);
     }
 
-    public void salvaUser(String nm, String cmps, String email, String pssd) {
+    public void salvaUser(String id, String nm, String cmps, String email, String pssd) {
         this.usuario = new Usuário();
+        this.usuario.setId(id);
         this.usuario.setNome(nm);
         this.usuario.setCampus(cmps);
         this.usuario.setEmail(email);
