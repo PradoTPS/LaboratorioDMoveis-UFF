@@ -25,11 +25,14 @@ public class Usuário implements Serializable {
     private String campus;
     private String email;
     private String senha;
+    private String codImagem;
+    private String uri;
     //o Firebase não aceita um monte de coisas para colocar como nome de um filho
     //por isso coloquei o email numa base, que dai ele vai aceitar
     private String id;
 
     public Usuário() {
+        codImagem = "";
     }
 
     public void salvar(){ //coloca o hashmap do usuário como um filho de usuarios no BD
@@ -45,10 +48,27 @@ public class Usuário implements Serializable {
         hashmapUsuario.put("campus", getCampus());
         hashmapUsuario.put("email", getEmail());
         hashmapUsuario.put("senha", getSenha());
+        hashmapUsuario.put("codimagem", getCodImagem());
+        hashmapUsuario.put("uri", getUri());
 
         return hashmapUsuario;
     }
 
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getCodImagem() {
+        return codImagem;
+    }
+
+    public void setCodImagem(String codImagem) {
+        this.codImagem = codImagem;
+    }
 
     public String getId() { return id; }
 
