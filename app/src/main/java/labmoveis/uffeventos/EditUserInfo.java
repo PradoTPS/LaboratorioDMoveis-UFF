@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +22,7 @@ public class EditUserInfo extends AppCompatActivity {
     public EditText email;
     public EditText senha;
     public EditText confirmaSenha;
+    private ProgressBar progressBar;
 
     public Usuário usuário;
     public BreakIterator mensagemerro;
@@ -46,6 +48,9 @@ public class EditUserInfo extends AppCompatActivity {
         this.email.setText(this.usuário.getEmail().toString());
         this.senha.setText(usuário.getSenha());
         this.confirmaSenha.setText(usuário.getSenha());
+
+        progressBar = (ProgressBar) findViewById(R.id.edit_user_progress_bar);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     public void confirma(View view) {
