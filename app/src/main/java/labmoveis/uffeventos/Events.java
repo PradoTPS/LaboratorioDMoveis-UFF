@@ -11,17 +11,20 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -30,6 +33,7 @@ import java.util.List;
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 import labmoveis.uffeventos.Config.LoginAtual;
 import labmoveis.uffeventos.Config.PreferenciasLogin;
+import labmoveis.uffeventos.Objetos.Usuário;
 
 public class Events extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,7 +48,9 @@ public class Events extends AppCompatActivity
 
     private SwipeRefreshLayout pullToRefresh;
 
-
+    Usuário usuário;
+    public TextView nomeUser;
+    public TextView emailUser;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +73,29 @@ public class Events extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View navHeader = navigationView.getHeaderView(0);
+        nomeUser = (TextView) navHeader.findViewById(R.id.nav_nome_user_id);
+        emailUser = (TextView) navHeader.findViewById(R.id.nav_email_uer_id);
 
+        LoginAtual loginAtual = new LoginAtual(this);
+        final String idUser = loginAtual.getId();
+
+        ConfiguraçãoFirebase.getAutenticacao();
+        DatabaseReference db = ConfiguraçãoFirebase.getFirebase();
+        Query userAtual = db.child("usuarios").child(idUser);
+        userAtual.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nome = dataSnapshot.child("nome").getValue().toString();
+                String email = dataSnapshot.child("email").getValue().toString();
+
+                nomeUser.setText(nome);
+                emailUser.setText(email);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
     }
 
     private void populaRecyclerView() {
