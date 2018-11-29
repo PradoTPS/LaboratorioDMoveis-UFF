@@ -38,10 +38,10 @@ public class Usuário implements Serializable {
     public Map<String, Object> toMap(){
         HashMap<String, Object> hashmapUsuario = new HashMap<>();
 
-        hashmapUsuario.put("Nome", getNome());
-        hashmapUsuario.put("Campus", getCampus());
-        hashmapUsuario.put("Email", getEmail());
-        hashmapUsuario.put("Senha", getSenha());
+        hashmapUsuario.put("nome", getNome());
+        hashmapUsuario.put("campus", getCampus());
+        hashmapUsuario.put("email", getEmail());
+        hashmapUsuario.put("senha", getSenha());
 
         return hashmapUsuario;
     }

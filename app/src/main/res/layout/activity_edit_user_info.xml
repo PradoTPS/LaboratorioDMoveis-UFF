@@ -141,7 +141,8 @@
                     android:textSize="16sp"
                     android:textColor="#FFFFFF"
                     android:text="Confirmar"
-                    android:background="@drawable/botao_login" />
+                    android:background="@drawable/botao_login"
+                    android:onClick="confirma"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
