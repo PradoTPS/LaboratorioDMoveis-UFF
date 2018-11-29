@@ -17,10 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +53,7 @@ public class Events extends AppCompatActivity
     Usuário usuário;
     public TextView nomeUser;
     public TextView emailUser;
+    public ImageView imagemUser;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,7 @@ public class Events extends AppCompatActivity
         View navHeader = navigationView.getHeaderView(0);
         nomeUser = (TextView) navHeader.findViewById(R.id.nav_nome_user_id);
         emailUser = (TextView) navHeader.findViewById(R.id.nav_email_uer_id);
+        imagemUser = (ImageView) navHeader.findViewById(R.id.nav_imagem_user_id);
 
         LoginAtual loginAtual = new LoginAtual(this);
         final String idUser = loginAtual.getId();
@@ -88,6 +92,11 @@ public class Events extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String nome = dataSnapshot.child("nome").getValue().toString();
                 String email = dataSnapshot.child("email").getValue().toString();
+                String uri = dataSnapshot.child("uri").getValue().toString();
+
+                Glide.with(imagemUser.getContext())
+                        .load(uri)
+                        .into(imagemUser);
 
                 nomeUser.setText(nome);
                 emailUser.setText(email);
