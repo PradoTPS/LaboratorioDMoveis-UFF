@@ -75,12 +75,13 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:layout_marginTop="10dp">
 
                     <EditText
                         android:id="@+id/edit_campus_id"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:maxLength="400"
                         android:hint="Campus"
                         android:ems="10" />
@@ -89,7 +90,8 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:layout_marginTop="10dp">
 
                     <EditText
                         android:id="@+id/edit_email_id"
@@ -104,13 +106,18 @@
                     android:orientation="vertical"
                     android:layout_weight="2">
 
-                    <EditText
-                        android:id="@+id/edit_senha_id"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/edit_senha_id_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Senha"
-                        android:inputType="textPassword"
-                        android:ems="10" />
+                        app:passwordToggleEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/edit_senha_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"/>
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="300dp"
@@ -118,13 +125,19 @@
                     android:orientation="vertical"
                     android:layout_weight="2">
 
-                    <EditText
-                        android:id="@+id/edit_confirmaSenha_id"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/edit_confirmaSenha_id_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:hint="Confirme a senha"
-                        android:ems="10" />
+                        app:passwordToggleEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/edit_confirmaSenha_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"/>
+                    </android.support.design.widget.TextInputLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
