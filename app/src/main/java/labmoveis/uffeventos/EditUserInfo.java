@@ -151,4 +151,8 @@ public class EditUserInfo extends AppCompatActivity {
             salvaImagem.setImageResource(R.drawable.checked);
         }
     }
+
+    public void back(View view) {
+        finish();
+    }
 }

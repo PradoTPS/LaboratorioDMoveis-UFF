@@ -93,10 +93,14 @@ public class Events extends AppCompatActivity
                 String nome = dataSnapshot.child("nome").getValue().toString();
                 String email = dataSnapshot.child("email").getValue().toString();
                 String uri = dataSnapshot.child("uri").getValue().toString();
-
-                Glide.with(imagemUser.getContext())
-                        .load(uri)
-                        .into(imagemUser);
+                if(!uri.equals("")){
+                    Glide.with(imagemUser.getContext())
+                            .load(uri)
+                            .into(imagemUser);
+                }else{
+                    imagemUser.setImageResource(R.drawable.no_image);
+                    Toast.makeText(Events.this, "Teste", Toast.LENGTH_SHORT).show();
+                }
 
                 nomeUser.setText(nome);
                 emailUser.setText(email);

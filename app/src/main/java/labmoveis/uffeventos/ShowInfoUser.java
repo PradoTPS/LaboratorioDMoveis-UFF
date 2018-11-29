@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,12 +65,16 @@ public class ShowInfoUser extends AppCompatActivity {
                 nome_value.setText(nome);
                 campus_value.setText(campus);
                 email_value.setText(email);
+                if(!uri.equals("")){
+                    Glide.with(imagem_value.getContext())
+                            .load(uri)
+                            .into(imagem_value);
+                }else{
+                    imagem_value.setImageResource(R.drawable.no_image);
+                    Toast.makeText(ShowInfoUser.this, "Teste", Toast.LENGTH_SHORT).show();
+                }
 
-                Glide.with(imagem_value.getContext())
-                        .load(uri)
-                        .into(imagem_value);
-
-                salvaUser(id, nome, campus, email, senha);
+                salvaUser(id, nome, campus, email, senha, uri);
             }
 
             @Override
@@ -83,13 +88,18 @@ public class ShowInfoUser extends AppCompatActivity {
         startActivity(it);
     }
 
-    public void salvaUser(String id, String nm, String cmps, String email, String pssd) {
+    public void salvaUser(String id, String nm, String cmps, String email, String pssd, String uri) {
         this.usuario = new Usuário();
         this.usuario.setId(id);
         this.usuario.setNome(nm);
         this.usuario.setCampus(cmps);
         this.usuario.setEmail(email);
         this.usuario.setSenha(pssd);
+        this.usuario.setUri(uri);
         Log.i("lucas", usuario.getNome());
+    }
+
+    public void back(View view) {
+        finish();
     }
 }

@@ -33,6 +33,7 @@ public class Usuário implements Serializable {
 
     public Usuário() {
         codImagem = "";
+        uri = "";
     }
 
     public void salvar(){ //coloca o hashmap do usuário como um filho de usuarios no BD

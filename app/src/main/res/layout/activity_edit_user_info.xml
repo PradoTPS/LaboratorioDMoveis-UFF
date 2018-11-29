@@ -180,7 +180,8 @@
             android:clickable="true"
             android:src="@drawable/back"
             android:layout_gravity="left|top"
-            android:background="@null" />
+            android:background="@null"
+            android:onClick="back"/>
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
