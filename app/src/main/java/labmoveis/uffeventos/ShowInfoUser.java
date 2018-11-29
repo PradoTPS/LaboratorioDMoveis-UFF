@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,7 @@ public class ShowInfoUser extends AppCompatActivity {
     TextView campus_value;
     TextView email_title;
     TextView email_value;
+    ImageView imagem_value;
 
     Usuário usuario;
 
@@ -43,6 +46,7 @@ public class ShowInfoUser extends AppCompatActivity {
         campus_value = findViewById(R.id.campus_user_id);
         email_title = findViewById(R.id.email_title_id);
         email_value = findViewById(R.id.email_user_id);
+        imagem_value = findViewById(R.id.imagem_user_id);
 
         LoginAtual loginAtual = new LoginAtual(this);
         final String id = loginAtual.getId();
@@ -56,9 +60,14 @@ public class ShowInfoUser extends AppCompatActivity {
                 String campus = dataSnapshot.child("campus").getValue().toString();
                 String email = dataSnapshot.child("email").getValue().toString();
                 String senha = dataSnapshot.child("senha").getValue().toString();
+                String uri = dataSnapshot.child("uri").getValue().toString();
                 nome_value.setText(nome);
                 campus_value.setText(campus);
                 email_value.setText(email);
+
+                Glide.with(imagem_value.getContext())
+                        .load(uri)
+                        .into(imagem_value);
 
                 salvaUser(id, nome, campus, email, senha);
             }
