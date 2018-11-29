@@ -81,6 +81,7 @@ public class Events extends AppCompatActivity
         emailUser = (TextView) navHeader.findViewById(R.id.nav_email_uer_id);
         imagemUser = (ImageView) navHeader.findViewById(R.id.nav_imagem_user_id);
 
+
         LoginAtual loginAtual = new LoginAtual(this);
         final String idUser = loginAtual.getId();
 
@@ -94,7 +95,7 @@ public class Events extends AppCompatActivity
                 String email = dataSnapshot.child("email").getValue().toString();
                 String uri = dataSnapshot.child("uri").getValue().toString();
                 if(!uri.equals("")){
-                    Glide.with(imagemUser.getContext())
+                    Glide.with(getApplicationContext())
                             .load(uri)
                             .into(imagemUser);
                 }else{

@@ -66,7 +66,7 @@ public class ShowInfoUser extends AppCompatActivity {
                 campus_value.setText(campus);
                 email_value.setText(email);
                 if(!uri.equals("")){
-                    Glide.with(imagem_value.getContext())
+                    Glide.with(getApplicationContext())
                             .load(uri)
                             .into(imagem_value);
                 }else{

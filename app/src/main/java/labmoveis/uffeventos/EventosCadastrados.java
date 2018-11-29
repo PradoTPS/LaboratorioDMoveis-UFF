@@ -15,12 +15,16 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -29,6 +33,7 @@ import java.util.List;
 import labmoveis.uffeventos.Config.ConfiguraçãoFirebase;
 import labmoveis.uffeventos.Config.LoginAtual;
 import labmoveis.uffeventos.Config.PreferenciasLogin;
+import labmoveis.uffeventos.Objetos.Usuário;
 
 public class EventosCadastrados extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,6 +48,11 @@ public class EventosCadastrados extends AppCompatActivity
     private AlertDialog carregando;
     private ProgressBar progressBar;
     private SwipeRefreshLayout pullToRefresh;
+
+    Usuário usuário;
+    public TextView nomeUser;
+    public TextView emailUser;
+    public ImageView imagemUser;
 
 
     @Override
@@ -64,11 +74,46 @@ public class EventosCadastrados extends AppCompatActivity
             }
         });
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View navHeader = navigationView.getHeaderView(0);
+        nomeUser = (TextView) navHeader.findViewById(R.id.nav_nome_user_id);
+        emailUser = (TextView) navHeader.findViewById(R.id.nav_email_uer_id);
+        imagemUser = (ImageView) navHeader.findViewById(R.id.nav_imagem_user_id);
+
+        LoginAtual loginAtual = new LoginAtual(this);
+        final String idUser = loginAtual.getId();
+
+        ConfiguraçãoFirebase.getAutenticacao();
+        DatabaseReference db = ConfiguraçãoFirebase.getFirebase();
+        Query userAtual = db.child("usuarios").child(idUser);
+        userAtual.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nome = dataSnapshot.child("nome").getValue().toString();
+                String email = dataSnapshot.child("email").getValue().toString();
+                String uri = dataSnapshot.child("uri").getValue().toString();
+                if(!uri.equals("")){
+                    Glide.with(getApplicationContext())
+                            .load(uri)
+                            .into(imagemUser);
+                }else{
+                    imagemUser.setImageResource(R.drawable.no_image);
+                    Toast.makeText(EventosCadastrados.this, "Teste", Toast.LENGTH_SHORT).show();
+                }
+
+                nomeUser.setText(nome);
+                emailUser.setText(email);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
         populaRecyclerView();
 
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     private void populaRecyclerView() {
@@ -190,6 +235,10 @@ public class EventosCadastrados extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = menuItem.getItemId();
 
+        if (id == R.id.nav_alterar_cadastro) {
+            it = new Intent(EventosCadastrados.this, ShowInfoUser.class);
+            startActivity(it);
+        }
         if (id == R.id.nav_eventos_interesse) {
             it = new Intent(EventosCadastrados.this, EventosInteresse.class);
             startActivity(it);

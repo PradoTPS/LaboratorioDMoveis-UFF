@@ -58,17 +58,17 @@ public class InformacaoEvento extends AppCompatActivity {
         salvoBanco = 0;
         btn_marcaInteresse.setImageResource(R.drawable.adicionarfavorito);
 
-        interesse  = i.getBooleanExtra("INTERESSE", false);
-        if(interesse){
+        interesse = i.getBooleanExtra("INTERESSE", false);
+        if (interesse) {
             salvoBanco = 1;
             btn_marcaInteresse.setImageResource(R.drawable.clear);
-        }else{
+        } else {
             System.out.println(i.getStringExtra("KEY"));
             ConfiguraçãoFirebase.getFirebase().child("usuarios").child(userId).child("eventos interesse").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot child : dataSnapshot.getChildren()){
-                        if(child.getKey().equals(i.getStringExtra("KEY"))){
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        if (child.getKey().equals(i.getStringExtra("KEY"))) {
                             interesse = true;
                             salvoBanco = 1;
                             btn_marcaInteresse.setImageResource(R.drawable.clear);
@@ -128,12 +128,12 @@ public class InformacaoEvento extends AppCompatActivity {
 
     public void marcaInteresse(View view) {
         DatabaseReference referencia = ConfiguraçãoFirebase.getFirebase();
-        if(!interesse){
+        if (!interesse) {
             interesse = true;
             btn_marcaInteresse.setImageResource(R.drawable.clear);
             referencia.child("usuarios").child(userId).child("eventos interesse").child(i.getStringExtra("KEY")).setValue(i.getStringExtra("NOME")); //coloca a referencia do evento no cadastro do usuario
             Toast.makeText(this, "Adicionado aos interesses", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             interesse = false;
             btn_marcaInteresse.setImageResource(R.drawable.adicionarfavorito);
             referencia.child("usuarios").child(userId).child("eventos interesse").child(i.getStringExtra("KEY")).removeValue();
@@ -147,10 +147,4 @@ public class InformacaoEvento extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    protected void onDestroy() { //salva a decisão de marcar interesse ou não ao sair
-        Intent returnIntent = new Intent();
-        setResult(Activity.RESULT_OK, returnIntent);
-        super.onDestroy();
-    }
 }
